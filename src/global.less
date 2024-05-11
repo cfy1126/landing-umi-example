@@ -1,7 +1,20 @@
 @import './Home/less/antMotionStyle.less';
+@import './layouts/nav.less';
+@import './layouts/footer.less';
 
 .header3-item .item-content,
 .header3-item-child .item-content,
 .header3-menu .item-content {
     margin-left: 0 !important;
+}
+.sd-body.sd-body--static{
+    max-width: none !important;
+}
+
+.sd-page{
+    flex-direction: row !important;
+}
+
+.sd-row.sd-page__row:not(.sd-row--compact) ~ .sd-row.sd-page__row:not(.sd-row--compact){
+    margin: 0 !important;
 }

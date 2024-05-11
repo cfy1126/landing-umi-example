@@ -1,4 +1,5 @@
 import React from 'react';
+
 export const Nav30DataSource = {
   wrapper: { className: 'header3 home-page-wrapper' },
   page: { className: 'home-page' },
@@ -55,7 +56,7 @@ export const Nav30DataSource = {
             },
           },
         ],
-      }
+      },
     ],
   },
   mobileMenu: { className: 'header3-mobile-menu' },
@@ -411,10 +412,14 @@ export const Footer10DataSource = {
     className: 'copyright',
     children: (
       <span>
-        <a href="http://abc.alipay.com">隐私权政策</a>&nbsp; &nbsp; &nbsp;
-        |&nbsp; &nbsp; &nbsp; <a href="http://abc.alipay.com">权益保障承诺书</a>&nbsp;
+        <a href="http://abc.alipay.com">隐私权政策</a>
+&nbsp; &nbsp; &nbsp;
+        |&nbsp; &nbsp; &nbsp;
+        <a href="http://abc.alipay.com">权益保障承诺书</a>
+&nbsp;
         &nbsp; &nbsp;&nbsp;ICP证:浙B2-20100257&nbsp; &nbsp;
-        &nbsp;&nbsp;Copyright © 2019 蚂蚁金融服务集团<br />
+        &nbsp;&nbsp;Copyright © 2019 蚂蚁金融服务集团
+        <br />
       </span>
     ),
   },

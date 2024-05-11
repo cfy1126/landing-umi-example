@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from 'antd';
 
@@ -11,7 +10,7 @@ export const getChildrenToRender = (item, i) => {
     : item.children;
   if (item.name.indexOf('button') === 0 && typeof item.children === 'object') {
     children = React.createElement(Button, {
-      ...item.children
+      ...item.children,
     });
   }
   return React.createElement(tag, { key: i.toString(), ...item }, children);

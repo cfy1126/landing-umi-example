@@ -4,9 +4,9 @@ import { Row, Col } from 'antd';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import { getChildrenToRender } from './utils';
 
-class Content extends React.PureComponent {
+class ProductList extends React.PureComponent {
   render() {
-    const { dataSource, isMobile, ...props } = this.props;
+    const { dataSource, isMobile, level, ...props } = this.props;
     const {
       wrapper,
       titleWrapper,
@@ -17,16 +17,16 @@ class Content extends React.PureComponent {
     return (
       <div {...props} {...wrapper}>
         <div {...page}>
-          <div {...titleWrapper}>
+          {level !== 2 && <div {...titleWrapper}>
             {titleWrapper.children.map(getChildrenToRender)}
-          </div>
+          </div>}
           <div class="list-title" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 50 }}>
             <div data-v-c17bef0a="" class="left" style={{ fontSize: 20, paddingLeft: 15, borderLeft: "4px solid #ff8f33" }}>二级分类</div>
-            <div data-v-c17bef0a="" class="right" style={{
+            {level !== 2 && <div data-v-c17bef0a="" class="right" style={{
               fontSize: 16,
               cursor: "pointer",
               color: "#fb930d"
-            }}>查看更多</div>
+            }}>查看更多</div>}
           </div>
           <OverPack {...overPackData}>
             <QueueAnim
@@ -54,4 +54,4 @@ class Content extends React.PureComponent {
   }
 }
 
-export default Content;
+export default ProductList;
