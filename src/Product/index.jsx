@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Tabs, Card, Input } from 'antd';
 import ProductList from '../Home/ProductList';
 import { Feature00DataSource } from '../Home/data.source';
-import SurveyComponent from './SurveyComponent';
+// import SurveyComponent from './SurveyComponent';
+
+const { Search } = Input;
 
 class Product extends Component {
   constructor(props) {
@@ -14,37 +17,58 @@ class Product extends Component {
     const { isMobile } = this.state;
 
     return (
-      <>
-        <SurveyComponent />
-        <ProductList
-          id="Feature0_0"
-          key="Feature0_0"
-          dataSource={Feature00DataSource}
-          isMobile={isMobile}
-          level={2}
-        />
-        <ProductList
-          id="Feature0_0"
-          key="Feature0_0"
-          dataSource={Feature00DataSource}
-          isMobile={this.state.isMobile}
-          level={2}
-        />,
-        <ProductList
-          id="Feature0_0"
-          key="Feature0_0"
-          dataSource={Feature00DataSource}
-          isMobile={this.state.isMobile}
-          level={2}
-        />,
-        <ProductList
-          id="Feature0_0"
-          key="Feature0_0"
-          dataSource={Feature00DataSource}
-          isMobile={this.state.isMobile}
-          level={2}
-        />
-      </>
+      <Card
+        title="分类名称"
+        bordered={true}
+        extra={<Search placeholder="input search text" enterButton="Search" size="large" />
+        }
+        style={{
+          width: `92%`,
+          margin: `0 auto`,
+        }}
+      >
+        <Tabs items={[
+          {
+            label: `Tab 1`,
+            key: '1',
+            children: <ProductList
+              id="Feature0_0"
+              key="Feature0_0"
+              dataSource={Feature00DataSource}
+              isMobile={isMobile}
+              level={2}
+            />,
+          },
+          {
+            label: `Tab 2`,
+            key: '2',
+            children: <ProductList
+              id="Feature0_0"
+              key="Feature0_0"
+              dataSource={Feature00DataSource}
+              isMobile={isMobile}
+              level={2}
+            />,
+          },
+          {
+            label: `Tab 3`,
+            key: '3',
+            children: <ProductList
+              id="Feature0_0"
+              key="Feature0_0"
+              dataSource={Feature00DataSource}
+              isMobile={isMobile}
+              level={2}
+            />,
+          },
+        ]}
+        tabBarExtraContent={{left: <strong>应用场景：</strong>}}
+        tabBarGutter={40}
+        tabBarStyle={{border:  'none'}}
+        >
+          {/* <SurveyComponent /> */}
+        </Tabs>
+      </Card>
     );
   }
 }
