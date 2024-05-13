@@ -1,19 +1,10 @@
 import React from 'react';
 
 export const NavDataSource = {
-  wrapper: { className: 'header3 home-page-wrapper' },
-  page: { className: 'home-page' },
-  logo: {
-    className: 'header3-logo',
-    children:
-      'https://gw.alipayobjects.com/zos/basement_prod/b30cdc2a-d91c-4c78-be9c-7c63b308d4b3.svg',
-  },
   Menu: {
-    className: 'header3-menu',
     children: [
       {
         name: 'item0',
-        className: 'header3-item',
         children: {
           href: '/',
           children: [{ children: '首页', name: 'text' }],
@@ -21,7 +12,6 @@ export const NavDataSource = {
       },
       {
         name: 'item1',
-        className: 'header3-item',
         children: {
           href: '#',
           children: [{ children: '产品资料', name: 'text' }],
@@ -65,6 +55,8 @@ export const NavDataSource = {
   },
   mobileMenu: { className: 'header3-mobile-menu' },
 };
+
+
 export const FooterDataSource = {
   wrapper: { className: 'home-page-wrapper footer1-wrapper' },
   OverPack: { className: 'footer1', playScale: 0.2 },

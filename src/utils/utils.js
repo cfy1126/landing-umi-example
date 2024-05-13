@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from 'antd';
 
 export const isImg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?/;
+
+
 export const getChildrenToRender = (item, i) => {
   let tag = item.name.indexOf('title') === 0 ? 'h1' : 'div';
   tag = item.href ? 'a' : tag;

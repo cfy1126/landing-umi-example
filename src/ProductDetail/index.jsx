@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Tabs, Card, Input, Breadcrumb, Typography, Select, Space, List, Skeleton, Avatar } from 'antd';
-import ProductList from '../Home/ProductList';
 
 const { Title, Text } = Typography;
 const list =

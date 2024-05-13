@@ -1,8 +1,8 @@
 import React from 'react';
 import TweenOne from 'rc-tween-one';
 import { Menu } from 'antd';
-import NavLink from 'umi';
-import { getChildrenToRender } from '../Home/utils';
+// import NavLink from 'umi';
+import { getChildrenToRender } from '../utils/utils';
 
 const { Item, SubMenu } = Menu;
 
@@ -10,7 +10,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phoneOpen: undefined,
+      phoneOpen: false,
     };
   }
 
@@ -22,38 +22,29 @@ class Header extends React.Component {
   };
 
   render() {
-    const { dataSource, isMobile, ...props } = this.props;
+    const { dataSource, isMobile } = this.props;
     const { phoneOpen } = this.state;
-    const navData = dataSource.Menu.children;
-    const navChildren = navData.map((item) => {
-      const { children: a, subItem, ...itemProps } = item;
+    const navChildren = dataSource.Menu.children.map((item) => {
+      const { children: a, subItem } = item;
       if (subItem) {
         return (
           <SubMenu
             key={item.name}
-            {...itemProps}
             title={
               <div
-                {...a}
-                className={`header3-item-block ${a.className}`.trim()}
+                className={`header3-item-block`}
               >
-                {a.children.map(getChildrenToRender)}
+                {a.children[0].children}
               </div>
             }
             popupClassName="header3-item-child"
           >
             {subItem.map(($item, ii) => {
               const { children: childItem } = $item;
-              console.log($item);
-              const child = childItem.href ? (
-                <NavLink {...childItem} to={childItem.href}>
-                  {childItem.children.map(getChildrenToRender)}
-                </NavLink>
-              ) : (
-                <div {...childItem}>
+              const child =
+                <div className='item-sub-item'>
                   {childItem.children.map(getChildrenToRender)}
                 </div>
-              );
               return (
                 <Item key={$item.name || ii.toString()} {...$item}>
                   {child}
@@ -64,10 +55,9 @@ class Header extends React.Component {
         );
       }
       return (
-        <Item key={item.name} {...itemProps}>
-
-          <a {...a} className={`header3-item-block ${a.className}`.trim()}>
-            {a.children.map(getChildrenToRender)}
+        <Item key={item.name}>
+          <a {...a} className={`header3-item-block`}>
+            {a.children[0].children}
           </a>
         </Item>
       );
@@ -77,18 +67,16 @@ class Header extends React.Component {
       <TweenOne
         component="header"
         animation={{ opacity: 0, type: 'from' }}
-        {...dataSource.wrapper}
-        {...props}
+        className='header3 home-page-wrapper'
       >
         <div
-          {...dataSource.page}
-          className={`${dataSource.page.className}${phoneOpen ? ' open' : ''}`}
+          className={`home-page${phoneOpen ? ' open' : ''}`}
         >
           <TweenOne
             animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
-            {...dataSource.logo}
+            className='header3-logo'
           >
-            <img width="100%" src={dataSource.logo.children} alt="img" />
+            <img width="100%" src='https://gw.alipayobjects.com/zos/basement_prod/b30cdc2a-d91c-4c78-be9c-7c63b308d4b3.svg' alt="img" />
           </TweenOne>
           {isMobile && (
             <div
@@ -103,7 +91,7 @@ class Header extends React.Component {
             </div>
           )}
           <TweenOne
-            {...dataSource.Menu}
+            className='header3-menu'
             animation={
               isMobile
                 ? {

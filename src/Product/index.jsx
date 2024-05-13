@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Card, Input } from 'antd';
-import ProductList from '../Home/ProductList';
-import { Feature00DataSource } from '../Home/data.source';
-// import SurveyComponent from './SurveyComponent';
+import ProductList from '../components/ProductList';
+// import { Feature00DataSource } from '../Home/data.source';
 
 const { Search } = Input;
 
@@ -32,10 +31,6 @@ class Product extends Component {
             label: `Tab 1`,
             key: '1',
             children: <ProductList
-              id="Feature0_0"
-              key="Feature0_0"
-              dataSource={Feature00DataSource}
-              isMobile={isMobile}
               level={2}
             />,
           },
@@ -43,10 +38,6 @@ class Product extends Component {
             label: `Tab 2`,
             key: '2',
             children: <ProductList
-              id="Feature0_0"
-              key="Feature0_0"
-              dataSource={Feature00DataSource}
-              isMobile={isMobile}
               level={2}
             />,
           },
@@ -54,10 +45,6 @@ class Product extends Component {
             label: `Tab 3`,
             key: '3',
             children: <ProductList
-              id="Feature0_0"
-              key="Feature0_0"
-              dataSource={Feature00DataSource}
-              isMobile={isMobile}
               level={2}
             />,
           },

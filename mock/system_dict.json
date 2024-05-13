@@ -1,0 +1,160 @@
+{
+  "RECORDS": [
+    {
+      "code": "1",
+      "name": "Regulatory Compliance Statement",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "2",
+      "name": "Installation Guide",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "3",
+      "name": "Product Manual",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "4",
+      "name": "Configuration Guide",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "5",
+      "name": "Operation Guide",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "1",
+      "name": "法规符合性声明",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "2",
+      "name": "安装指导",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "3",
+      "name": "产品手册",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "4",
+      "name": "调测文档",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "5",
+      "name": "运维指导",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "6",
+      "name": "Other Information",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "6",
+      "name": "其他信息",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "1",
+      "name": "User Manual",
+      "type": "2",
+      "language": "en"
+    },
+    {
+      "code": "2",
+      "name": "Operation Guide",
+      "type": "2",
+      "language": "en"
+    },
+    {
+      "code": "3",
+      "name": "Quick Installation Guide",
+      "type": "2",
+      "language": "en"
+    },
+    {
+      "code": "4",
+      "name": "Configuration Guide",
+      "type": "2",
+      "language": "en"
+    },
+    {
+      "code": "5",
+      "name": "Configuration Video",
+      "type": "2",
+      "language": "en"
+    },
+    {
+      "code": "6",
+      "name": "Installation Guide",
+      "type": "2",
+      "language": "en"
+    },
+    {
+      "code": "7",
+      "name": "Installation Video",
+      "type": "2",
+      "language": "en"
+    },
+    {
+      "code": "1",
+      "name": "用户手册",
+      "type": "2",
+      "language": "zh"
+    },
+    {
+      "code": "2",
+      "name": "运维指导",
+      "type": "2",
+      "language": "zh"
+    },
+    {
+      "code": "3",
+      "name": "快速安装指导",
+      "type": "2",
+      "language": "zh"
+    },
+    {
+      "code": "4",
+      "name": "调测文档",
+      "type": "2",
+      "language": "zh"
+    },
+    {
+      "code": "5",
+      "name": "调测视频",
+      "type": "2",
+      "language": "zh"
+    },
+    {
+      "code": "6",
+      "name": "安装手册",
+      "type": "2",
+      "language": "zh"
+    },
+    {
+      "code": "7",
+      "name": "安装视频",
+      "type": "2",
+      "language": "zh"
+    }
+  ]
+}

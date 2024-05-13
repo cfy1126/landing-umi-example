@@ -1,0 +1,64 @@
+{
+  "RECORDS": [
+    {
+      "attach_name": "SG8.0/10/12/15/17/20/23/25RT-20 用户手册",
+      "product_code": "1",
+      "attach_url": "https://info-support.sungrowpower.com/application/pdf/2022/04/27/SG8.0RT-20-UCN-Ver19-202112.pdf",
+      "attach_category": "3",
+      "attach_type": "1",
+      "attach_size": "10",
+      "attach_version": "1.0",
+      "attach_language": "简体中文",
+      "update_time": "13/5/2024",
+      "language": "zh"
+    },
+    {
+      "attach_name": "固件升级指导",
+      "product_code": "1",
+      "attach_url": "https://info-support.sungrowpower.com/application/pdf/2023/09/27/固件升级指导-UCN-Ver11-202305.pdf",
+      "attach_category": "5",
+      "attach_type": "2",
+      "attach_size": "12",
+      "attach_version": "1.0",
+      "attach_language": "简体中文",
+      "update_time": "13/5/2024",
+      "language": "zh"
+    },
+    {
+      "attach_name": "SG8.0/10/12/15/17/20/23/25RT-20 快速安装指导",
+      "product_code": "1",
+      "attach_url": "https://info-support.sungrowpower.com/application/pdf/2021/09/07/6cc12013-1f4c-4d49-ab26-8b223119bdf4.pdf",
+      "attach_category": "2",
+      "attach_type": "3",
+      "attach_size": "1.2",
+      "attach_version": "2.0",
+      "attach_language": "简体中文",
+      "update_time": "13/5/2024",
+      "language": "zh"
+    },
+    {
+      "attach_name": "SG8.0/10/12/15/17/20/23/25RT-20 User Manual",
+      "product_code": "1",
+      "attach_url": "https://info-support.sungrowpower.com/application/pdf/2022/04/27/SG8.0RT-20-UCN-Ver19-202112.pdf",
+      "attach_category": "3",
+      "attach_type": "1",
+      "attach_size": "15",
+      "attach_version": "1.0",
+      "attach_language": "English",
+      "update_time": "14/5/2024",
+      "language": "en"
+    },
+    {
+      "attach_name": "SG8.0/10/12/15/17/20/23/25RT-20 사용자 안내서",
+      "product_code": "1",
+      "attach_url": "https://info-support.sungrowpower.com/application/pdf/2022/04/27/SG8.0RT-20-UCN-Ver19-202112.pdf",
+      "attach_category": "3",
+      "attach_type": "1",
+      "attach_size": "8",
+      "attach_version": "1.2",
+      "attach_language": "Korean",
+      "update_time": "15/5/2024",
+      "language": "ko"
+    }
+  ]
+}

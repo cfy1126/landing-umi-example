@@ -1,0 +1,180 @@
+{
+  "RECORDS": [
+    {
+      "code": "1",
+      "name": "PV System",
+      "parent_name": "",
+      "level": "1",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "2",
+      "name": "Monitoring & Control",
+      "parent_name": "",
+      "level": "1",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "4",
+      "name": "Residential",
+      "parent_name": "PV System",
+      "level": "2",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "5",
+      "name": "Commercial",
+      "parent_name": "PV System",
+      "level": "2",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "6",
+      "name": "Utility",
+      "parent_name": "PV System",
+      "level": "2",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "7",
+      "name": "Smart Energy Management Platform",
+      "parent_name": "Monitoring & Control",
+      "level": "2",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "8",
+      "name": "Monitoring System",
+      "parent_name": "Monitoring & Control",
+      "level": "2",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "9",
+      "name": "Communication Acquisition Equipment",
+      "parent_name": "Monitoring & Control",
+      "level": "2",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "11",
+      "name": "Single Phase",
+      "parent_name": "Residential",
+      "level": "3",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "12",
+      "name": "Three Phases",
+      "parent_name": "Residential",
+      "level": "3",
+      "type": "1",
+      "language": "en"
+    },
+    {
+      "code": "1",
+      "name": "光伏系统",
+      "parent_name": "",
+      "level": "1",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "2",
+      "name": "阳光云",
+      "parent_name": "",
+      "level": "1",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "3",
+      "name": "可再生能源制氢系统",
+      "parent_name": "",
+      "level": "1",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "4",
+      "name": "户用",
+      "parent_name": "光伏系统",
+      "level": "2",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "5",
+      "name": "工商业",
+      "parent_name": "光伏系统",
+      "level": "2",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "6",
+      "name": "地面电站",
+      "parent_name": "光伏系统",
+      "level": "2",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "7",
+      "name": "智慧能源管理平台",
+      "parent_name": "阳光云",
+      "level": "2",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "8",
+      "name": "监控系统",
+      "parent_name": "阳光云",
+      "level": "2",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "9",
+      "name": "通信采集设备",
+      "parent_name": "阳光云",
+      "level": "2",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "10",
+      "name": "制氢电源",
+      "parent_name": "可再生能源制氢系统",
+      "level": "2",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "11",
+      "name": "单相",
+      "parent_name": "户用",
+      "level": "3",
+      "type": "1",
+      "language": "zh"
+    },
+    {
+      "code": "12",
+      "name": "三相",
+      "parent_name": "户用",
+      "level": "3",
+      "type": "1",
+      "language": "zh"
+    }
+  ]
+}
