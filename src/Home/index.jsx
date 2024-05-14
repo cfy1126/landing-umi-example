@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Banner from './Banner';
-import { getLocale } from 'umi';
+import { connect } from 'umi';
 import ProductList from '../components/ProductList';
 import './less/antMotionStyle.less';
-import { fetchProductCategories } from '../services/api';
 
 
-const Home = () => {
-  const [productCategories, setProductCategories] = useState([]);
+const Home = ({ productCategory, dispatch }) => {
+  const { data } = productCategory;
+  const systems = data.filter((item) => item.level === '1');
   useEffect(() => {
-    fetchProductCategories().then((res) => {
-      let locale = getLocale();
-      if (locale.indexOf('zh') !== -1) {
-        locale = 'zh';
-      } else if (locale.indexOf('en') !== -1) {
-        locale = 'en';
-      } else {
-        locale = 'zh'
-      }
-      let result = res.data.filter((item) => item.language === locale);
-      setProductCategories(result);
-    });
+    // 组件挂载时触发异步请求
+    dispatch({ type: 'productCategory/fetchData' });
   }, []);
-  const systems = productCategories.filter((item) => item.level === '1');
   return (
     <div className="templates-wrapper">
       <Banner />
@@ -33,7 +22,10 @@ const Home = () => {
               level={1}
               key={item.code}
               title={item.name}
-              scenes={productCategories.filter((scene) => scene.parent_name === item.name)}
+              scenes={data.filter((scene) => scene.parent_name === item.name)}
+              id={
+                item.code
+              }
             />
           )
         })
@@ -42,4 +34,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default connect(({ productCategory }) => ({ productCategory }))(Home);
