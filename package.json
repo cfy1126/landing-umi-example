@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "alasql": "1.7.5",
+    "axios": "^1.6.8",
     "enquire-js": "^0.2.1",
     "rc-banner-anim": "^2.1.0",
     "rc-queue-anim": "^1.6.7",
@@ -23,7 +24,7 @@
     "survey-react-ui": "^1.10.3"
   },
   "devDependencies": {
-    "@umijs/preset-react": "^1.4.5",
+    "@umijs/preset-react": "^2.1.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.0.0",
     "eslint-config-airbnb": "^18.0.0",
@@ -42,6 +43,6 @@
     "stylelint": "^9.4.0",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.0.0",
-    "umi": "^3.0.0"
+    "umi": "^3.5.0"
   }
 }

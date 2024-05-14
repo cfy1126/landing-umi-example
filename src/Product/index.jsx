@@ -30,30 +30,29 @@ class Product extends Component {
           {
             label: `Tab 1`,
             key: '1',
-            children: <ProductList
-              level={2}
-            />,
+            // children: <ProductList
+            //   level={2}
+            // />,
           },
           {
             label: `Tab 2`,
             key: '2',
-            children: <ProductList
-              level={2}
-            />,
+            // children: <ProductList
+            //   level={2}
+            // />,
           },
           {
             label: `Tab 3`,
             key: '3',
-            children: <ProductList
-              level={2}
-            />,
+            // children: <ProductList
+            //   level={2}
+            // />,
           },
         ]}
-        tabBarExtraContent={{left: <strong>应用场景：</strong>}}
-        tabBarGutter={40}
-        tabBarStyle={{border:  'none'}}
+          tabBarExtraContent={{ left: <strong>应用场景：</strong> }}
+          tabBarGutter={40}
+          tabBarStyle={{ border: 'none' }}
         >
-          {/* <SurveyComponent /> */}
         </Tabs>
       </Card>
     );

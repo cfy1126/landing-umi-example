@@ -1,8 +1,9 @@
 import React from 'react';
+import { getLocale, Link } from 'umi';
 import TweenOne from 'rc-tween-one';
-import { Menu } from 'antd';
-// import NavLink from 'umi';
-import { getChildrenToRender } from '../utils/utils';
+import { Menu, Select } from 'antd';
+import { fetchProductCategories } from '../services/api';
+
 
 const { Item, SubMenu } = Menu;
 
@@ -11,6 +12,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       phoneOpen: false,
+      productCategories: []
     };
   }
 
@@ -21,48 +23,28 @@ class Header extends React.Component {
     });
   };
 
-  render() {
-    const { dataSource, isMobile } = this.props;
-    const { phoneOpen } = this.state;
-    const navChildren = dataSource.Menu.children.map((item) => {
-      const { children: a, subItem } = item;
-      if (subItem) {
-        return (
-          <SubMenu
-            key={item.name}
-            title={
-              <div
-                className={`header3-item-block`}
-              >
-                {a.children[0].children}
-              </div>
-            }
-            popupClassName="header3-item-child"
-          >
-            {subItem.map(($item, ii) => {
-              const { children: childItem } = $item;
-              const child =
-                <div className='item-sub-item'>
-                  {childItem.children.map(getChildrenToRender)}
-                </div>
-              return (
-                <Item key={$item.name || ii.toString()} {...$item}>
-                  {child}
-                </Item>
-              );
-            })}
-          </SubMenu>
-        );
+  componentDidMount() {
+    fetchProductCategories().then((res) => {
+      let locale = getLocale();
+      if (locale.indexOf('zh') !== -1) {
+        locale = 'zh';
+      } else if (locale.indexOf('en') !== -1) {
+        locale = 'en';
+      } else {
+        locale = 'zh'
       }
-      return (
-        <Item key={item.name}>
-          <a {...a} className={`header3-item-block`}>
-            {a.children[0].children}
-          </a>
-        </Item>
-      );
+      let result = res.data.filter((item) => item.language === locale);
+      this.setState({
+        productCategories: result
+      });
     });
+  }
+
+  render() {
+    const { isMobile } = this.props;
+    const { phoneOpen, productCategories } = this.state;
     const moment = phoneOpen === undefined ? 300 : null;
+    const menuDataOne = productCategories.filter((item) => item.level === '1');
     return (
       <TweenOne
         component="header"
@@ -80,7 +62,7 @@ class Header extends React.Component {
           </TweenOne>
           {isMobile && (
             <div
-              {...dataSource.mobileMenu}
+              className='header3-mobile-menu'
               onClick={() => {
                 this.phoneClick();
               }}
@@ -115,7 +97,28 @@ class Header extends React.Component {
               defaultSelectedKeys={['item0']}
               theme="light"
             >
-              {navChildren}
+              <Item key='sub'>
+                <Link to="/">首页</Link>
+              </Item>
+              <SubMenu key="sub1" title="产品资料">
+                {menuDataOne.map((item, index) => {
+                  return (
+                    <SubMenu key={`sub1-${index}`} title={item.name}>
+                      {this.state.productCategories.filter((child) => child.parent_name === item.name).map((child, childIndex) => {
+                        return (
+                          <Item key={`sub1-${index}-${childIndex}`}><Link to={`/product?id=${item.code}&vId=${child.code}`}>{child.name}</Link></Item>
+                        )
+                      })}
+                    </SubMenu>
+                  )
+                })}
+              </SubMenu>
+              <Item key="language" style={{ float: 'right' }}>
+                <Select defaultValue="zh" style={{ width: 120 }} >
+                  <Option value="en">English</Option>
+                  <Option value="zh">中文</Option>
+                </Select>
+              </Item>
             </Menu>
           </TweenOne>
         </div>

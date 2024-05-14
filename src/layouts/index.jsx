@@ -3,10 +3,6 @@ import { enquireScreen } from 'enquire-js';
 import Header from './Nav';
 import Footer from './Footer';
 
-import {
-    NavDataSource,
-    FooterDataSource,
-} from './data.source.js';
 
 const Layout = ({ children }) => {
     const [isMobile, setIsMobile] = useState(false);
@@ -31,9 +27,9 @@ const Layout = ({ children }) => {
 
     return (
         <>
-            <Header dataSource={NavDataSource} isMobile={isMobile} />
+            <Header isMobile={isMobile} />
             {children}
-            <Footer dataSource={FooterDataSource} isMobile={isMobile} />
+            <Footer isMobile={isMobile} />
         </>
     );
 }
