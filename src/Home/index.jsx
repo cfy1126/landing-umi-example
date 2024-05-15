@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Banner from './Banner';
 import { connect } from 'umi';
-import ProductList from '../components/ProductList';
+import ProductSystem from '../components/ProductSystem'
 import './less/antMotionStyle.less';
 
 
@@ -16,17 +16,9 @@ const Home = ({ productCategory, dispatch }) => {
     <div className="templates-wrapper">
       <Banner />
       {
-        systems.map((item) => {
+        systems.length > 0 && systems.map((item) => {
           return (
-            <ProductList
-              level={1}
-              key={item.code}
-              title={item.name}
-              scenes={data.filter((scene) => scene.parent_name === item.name)}
-              id={
-                item.code
-              }
-            />
+            <ProductSystem id={item.code} title={item.name}/>
           )
         })
       }

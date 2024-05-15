@@ -7,21 +7,28 @@ const { Search } = Input;
 
 const Product = ({ productCategory, dispatch }) => {
   const location = useLocation();
-  const { id, vId } = location.query;
+  let { id, vId } = location.query;
+
+  // if (vId === undefined) {
+  //   vId = 'all';
+  // }
 
   const { data } = productCategory;
-  const [activeType, setActiveType] = useState(vId);
+  const [activeScene, setActiveScene] = useState(vId);
+  const [activeType, setActiveType] = useState('all');
   const system = data.find((item) => item.code === id);
   const scenes = data.filter((item) => item.parent_name === system.name);
-  const singularScene = scenes.find((item) => item.code === activeType) || {};
-  const outputTypes = singularScene.hasOwnProperty('name')  && data.filter((item) => item.parent_name === singularScene.name);
+  const singularScene = scenes.find((item) => item.code === activeScene) || {};
+  const outputTypes = singularScene.hasOwnProperty('name') && data.filter((item) => item.parent_name === singularScene.name);
   useEffect(() => {
     // 组件挂载时触发异步请求
     dispatch({ type: 'productCategory/fetchData' });
+
   }, []);
-  
+
+
   useEffect(() => {
-    setActiveType(vId);
+    setActiveScene(vId);
   }, [vId]);
   return (
     <Card
@@ -38,8 +45,8 @@ const Product = ({ productCategory, dispatch }) => {
       <div className="filter-container">
         <strong>应用场景：</strong>
         <Radio.Group
-          value={activeType}
-          onChange={(e) => { setActiveType(e.target.value); console.log(activeType); }}
+          value={activeScene}
+          onChange={(e) => { setActiveScene(e.target.value) }}
           style={{
             marginTop: 16,
           }}
@@ -51,11 +58,12 @@ const Product = ({ productCategory, dispatch }) => {
         </Radio.Group>
         <br />
         {
-          outputTypes.length>0 &&
+          outputTypes.length > 0 &&
           <div>
             <strong>输出类型：</strong>
             <Radio.Group
-              defaultValue="all"
+              value={activeType}
+              onChange={(e) => { if (e.target.value === 'all') { setActiveType('') } else { setActiveType(e.target.value) } }}
               style={{
                 marginTop: 16,
               }}
@@ -67,6 +75,11 @@ const Product = ({ productCategory, dispatch }) => {
             </Radio.Group>
           </div>
         }
+      </div>
+      <div className='home-page-wrapper content0-wrapper'>
+        <div className='home-page content0'>
+          <ProductList level={2} id={id} vId={activeScene} name={singularScene.name} tId={activeType} />
+        </div>
       </div>
     </Card>
   );

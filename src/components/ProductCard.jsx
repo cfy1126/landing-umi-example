@@ -3,9 +3,9 @@ import QueueAnim from 'rc-queue-anim';
 import { Row, Col } from 'antd';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 
-const ProductCard = ({ products }) => {
+const ProductCard = ({ products=[]}) => {
     return (
-        <OverPack playScale={0.3}>
+        <OverPack playScale={0}>
             <QueueAnim
                 type="bottom"
                 key="block"

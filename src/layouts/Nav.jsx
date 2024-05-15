@@ -1,8 +1,7 @@
 import React from 'react';
-import { getLocale, Link } from 'umi';
+import { Link, connect } from 'umi';
 import TweenOne from 'rc-tween-one';
 import { Menu, Select } from 'antd';
-import { fetchProductCategories } from '../services/api';
 
 
 const { Item, SubMenu } = Menu;
@@ -24,27 +23,15 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
-    fetchProductCategories().then((res) => {
-      let locale = getLocale();
-      if (locale.indexOf('zh') !== -1) {
-        locale = 'zh';
-      } else if (locale.indexOf('en') !== -1) {
-        locale = 'en';
-      } else {
-        locale = 'zh'
-      }
-      let result = res.data.filter((item) => item.language === locale);
-      this.setState({
-        productCategories: result
-      });
-    });
+    this.props.dispatch({ type: 'productCategory/fetchData' });
   }
 
   render() {
-    const { isMobile } = this.props;
-    const { phoneOpen, productCategories } = this.state;
+    const { isMobile, productCategory } = this.props;
+    const { data } = productCategory;
+    const { phoneOpen } = this.state;
     const moment = phoneOpen === undefined ? 300 : null;
-    const menuDataOne = productCategories.filter((item) => item.level === '1');
+    const menuDataOne = data.filter((item) => item.level === '1');
     return (
       <TweenOne
         component="header"
@@ -104,7 +91,7 @@ class Header extends React.Component {
                 {menuDataOne.map((item, index) => {
                   return (
                     <SubMenu key={`sub1-${index}`} title={item.name}>
-                      {this.state.productCategories.filter((child) => child.parent_name === item.name).map((child, childIndex) => {
+                      {data.filter((child) => child.parent_name === item.name).map((child, childIndex) => {
                         return (
                           <Item key={`sub1-${index}-${childIndex}`}><Link to={`/product?id=${item.code}&vId=${child.code}`}>{child.name}</Link></Item>
                         )
@@ -127,4 +114,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default connect(({ productCategory }) => ({ productCategory }))(Header);
