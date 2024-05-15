@@ -9,17 +9,13 @@ const Product = ({ productCategory, dispatch }) => {
   const location = useLocation();
   let { id, vId } = location.query;
 
-  // if (vId === undefined) {
-  //   vId = 'all';
-  // }
-
   const { data } = productCategory;
   const [activeScene, setActiveScene] = useState(vId);
   const [activeType, setActiveType] = useState('all');
   const system = data.find((item) => item.code === id);
   const scenes = data.filter((item) => item.parent_name === system.name);
   const singularScene = scenes.find((item) => item.code === activeScene) || {};
-  const outputTypes = singularScene.hasOwnProperty('name') && data.filter((item) => item.parent_name === singularScene.name);
+  const outputTypes = data.filter((item) => item.parent_name === singularScene.name);
   useEffect(() => {
     // 组件挂载时触发异步请求
     dispatch({ type: 'productCategory/fetchData' });

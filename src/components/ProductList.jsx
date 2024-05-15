@@ -3,7 +3,6 @@ import { Link, connect, useLocation } from 'umi'
 import ProductCard from './ProductCard';
 
 const ProductList = ({ id = '', vId = '', name='', tId='',productInfo, dispatch }) => {
-  console.log(name);
   const { data: products } = productInfo;
   let dataSources = [];
   if(tId && tId !== 'all'){
@@ -31,7 +30,7 @@ const ProductList = ({ id = '', vId = '', name='', tId='',productInfo, dispatch 
               }}><Link to={`/product?id=${id}&vId=${vId}`}>查看更多</Link></div>
             }
           </div>
-          <ProductCard products={dataSources} />
+          <ProductCard products={dataSources} id={id} vId={vId} />
         </div>
       }
     </>
