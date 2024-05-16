@@ -1,6 +1,5 @@
-// src/models/example.js
-import { getLocale } from "umi"; // 获取当前语言
-import { fetchProductCategories } from "../services/api"; // 假设有一个服务用于异步请求数据
+import { getLocale } from "umi";
+import { fetchProductCategories } from "../services/api";
 
 export default {
   namespace: "productCategory",
@@ -10,7 +9,7 @@ export default {
   effects: {
     *fetchData(_, { call, put }) {
       try {
-        const response = yield call(fetchProductCategories); // 调用服务请求数据
+        const response = yield call(fetchProductCategories);
         let locale = getLocale();
         if (locale.indexOf("zh") !== -1) {
           locale = "zh";

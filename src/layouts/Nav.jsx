@@ -10,7 +10,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       phoneOpen: false,
-      productCategories: [],
+      // selectKey: "home",
     };
   }
 
@@ -26,11 +26,10 @@ class Header extends React.Component {
   }
 
   render() {
+    const { phoneOpen, selectKey } = this.state;
     const { isMobile, productCategory } = this.props;
-    const { data } = productCategory;
-    const { phoneOpen } = this.state;
+    const { data: categories } = productCategory;
     const moment = phoneOpen === undefined ? 300 : null;
-    const menuDataOne = data.filter((item) => item.level === "1");
     return (
       <TweenOne
         component="header"
@@ -82,34 +81,43 @@ class Header extends React.Component {
           >
             <Menu
               mode={isMobile ? "inline" : "horizontal"}
-              defaultSelectedKeys={["item0"]}
               theme="light"
+              // selectedKeys={[selectKey]}
+              // onSelect={({ key }) => {
+              //   if (key === "language") {
+              //     this.setState({ selectKey: "home" });
+              //   } else {
+              //     this.setState({ selectKey: key });
+              //   }
+              // }}
             >
-              <Item key="sub">
+              <Item key="home">
                 <Link to="/">首页</Link>
               </Item>
               <SubMenu key="sub1" title="产品资料">
-                {menuDataOne.map((item, index) => {
-                  return (
-                    <SubMenu key={`sub1-${index}`} title={item.name}>
-                      {data
-                        .filter((child) => child.parent_name === item.name)
-                        .map((child, childIndex) => {
-                          return (
-                            <Item key={`sub1-${index}-${childIndex}`}>
-                              <Link
-                                to={`/product?id=${item.code}&vId=${child.code}`}
-                              >
-                                {child.name}
-                              </Link>
-                            </Item>
-                          );
-                        })}
-                    </SubMenu>
-                  );
-                })}
+                {categories
+                  .filter((item) => item.level === "1")
+                  .map((item, index) => {
+                    return (
+                      <SubMenu key={`sub1-${index}`} title={item.name}>
+                        {categories
+                          .filter((child) => child.parent_name === item.name)
+                          .map((element, childIndex) => {
+                            return (
+                              <Item key={`sub1-${index}-${childIndex}`}>
+                                <Link
+                                  to={`/product?id=${item.code}&vId=${element.code}`}
+                                >
+                                  {element.name}
+                                </Link>
+                              </Item>
+                            );
+                          })}
+                      </SubMenu>
+                    );
+                  })}
               </SubMenu>
-              <Item key="language" style={{ float: "right" }}>
+              <Item key="language">
                 <Select defaultValue="zh" style={{ width: 120 }}>
                   <Option value="en">English</Option>
                   <Option value="zh">中文</Option>
@@ -124,3 +132,5 @@ class Header extends React.Component {
 }
 
 export default connect(({ productCategory }) => ({ productCategory }))(Header);
+
+// TODO 1. 其它页面路由时菜单选中问题(查看更多)

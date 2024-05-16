@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { connect, useLocation } from "umi";
-import { Tabs, Card, Input, Radio } from "antd";
+import { Card, Input, Radio } from "antd";
 import ProductList from "../components/ProductList";
 
 const { Search } = Input;
@@ -8,18 +8,18 @@ const { Search } = Input;
 const Product = ({ productCategory, dispatch }) => {
   const location = useLocation();
   let { id, vId } = location.query;
-
-  const { data } = productCategory;
+  
   const [activeScene, setActiveScene] = useState(vId);
   const [activeType, setActiveType] = useState("all");
-  const system = data.find((item) => item.code === id);
-  const scenes = data.filter((item) => item.parent_name === system.name);
+  
+  const { data: categories } = productCategory;
+  const system = categories.find((item) => item.code === id) || {};
+  const scenes = categories.filter((item) => item.parent_name === system.name);
   const singularScene = scenes.find((item) => item.code === activeScene) || {};
-  const outputTypes = data.filter(
+  const outputTypes = categories.filter(
     (item) => item.parent_name === singularScene.name
   );
   useEffect(() => {
-    // 组件挂载时触发异步请求
     dispatch({ type: "productCategory/fetchData" });
   }, []);
 
@@ -28,7 +28,7 @@ const Product = ({ productCategory, dispatch }) => {
   }, [vId]);
   return (
     <Card
-      title={system && system.name}
+      title={system.name}
       bordered={true}
       extra={
         <Search
@@ -90,11 +90,10 @@ const Product = ({ productCategory, dispatch }) => {
       <div className="home-page-wrapper content0-wrapper">
         <div className="home-page content0">
           <ProductList
-            level={2}
             id={id}
             vId={activeScene}
-            name={singularScene.name}
             tId={activeType}
+            name={singularScene.name}
           />
         </div>
       </div>

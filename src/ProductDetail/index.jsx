@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect, useLocation } from "umi";
 import {
   Card,
@@ -12,6 +12,16 @@ import {
 
 const { Title, Text } = Typography;
 
+/**
+ *
+ * @param {
+ * systemDict: 系统字典
+ * productInfo: 产品信息
+ * productCategory: 产品分类
+ * productAttach: 产品附件
+ * } param0
+ */
+
 function ProductDetail({
   systemDict,
   productInfo,
@@ -20,11 +30,13 @@ function ProductDetail({
   dispatch,
 }) {
   const location = useLocation();
-  let { id, vId, pId } = location.query;
+  let { id, pId } = location.query;
   const { data: categories } = productCategory;
   const { data: products } = productInfo;
   const { data: attachs } = productAttach;
   const { data: types } = systemDict;
+  // 选择文档类型
+  const [activeType, setActiveType] = useState("");
 
   const currentAttachs = attachs.filter((item) => item.product_code === pId);
   const groupedData = currentAttachs.reduce((acc, curr) => {
@@ -45,29 +57,44 @@ function ProductDetail({
   }, []);
   const handleAttachType = (id) => {
     let data = types.find((item) => item.code === id && item.type === "2");
-    return data.name;
+    return data.name || "";
   };
   const renderAttach = () => {
     let arr = [];
     for (let i in groupedData) {
-      let singularType = types.find((item) => item.code === i);
-      let category = singularType.hasOwnProperty("name") && singularType.name;
-      if (groupedData && groupedData[i].length > 0) {
+      let singularType = types.find((item) => item.code === i) || {};
+      let filteredObj = {};
+      if (activeType) {
+        const filteredKeys = Object.keys(groupedData);
+        filteredKeys.forEach((key) => {
+          if (key === activeType) {
+            filteredObj[key] = JSON.parse(JSON.stringify(groupedData[key]));;
+          }
+        });
+      } else {
+        filteredObj = JSON.parse(JSON.stringify(groupedData));
+      }
+      if (filteredObj && filteredObj[i] && filteredObj[i].length > 0) {
         arr.push(
-          <Card type="inner" title={category}>
+          <Card type="inner" title={singularType.name} key={singularType.name}>
             <List
               className="demo-loadmore-list"
               itemLayout="horizontal"
-              dataSource={groupedData[i]}
+              dataSource={filteredObj[i]}
               renderItem={(item) => (
                 <List.Item
+                  key={item.attach_name}
                   actions={[
-                    <a key="list-loadmore-edit" href={item.attach_url}>
+                    <a
+                      href={item.attach_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       下载
                     </a>,
                   ]}
                 >
-                  <Skeleton avatar title={false} loading={item.loading} active>
+                  <Skeleton avatar title={false} loading={false} active>
                     <List.Item.Meta
                       title={<div>{item.attach_name}</div>}
                       description={
@@ -99,6 +126,8 @@ function ProductDetail({
     }
     return arr;
   };
+
+  const keyTypeArr = Object.keys(groupedData) || [];
   return (
     <Card
       title={
@@ -120,17 +149,17 @@ function ProductDetail({
           <Select
             placeholder="请选择资料类型"
             style={{ width: 160 }}
-            // onChange={handleChange}
-            options={[
-              {
-                value: "jack",
-                label: "Jack",
-              },
-              {
-                value: "lucy",
-                label: "Lucy",
-              },
-            ]}
+            onChange={(value) => setActiveType(value)}
+            options={keyTypeArr.map((item) => {
+              let singularType =
+                types.find(
+                  (element) => element.code === item && element.type === "1"
+                ) || {};
+              return {
+                value: item,
+                label: singularType.name,
+              };
+            })}
           />
           <Select
             placeholder="请选择语言"

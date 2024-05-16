@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "umi";
 import ProductList from "./ProductList";
 
-const ProductSystem = ({ id = "", title = "", productCategory, dispatch }) => {
+const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   const { data: categories } = productCategory;
   const singularSystem = categories.find((item) => item.code === id);
   const scenes = categories.filter(
@@ -15,10 +15,17 @@ const ProductSystem = ({ id = "", title = "", productCategory, dispatch }) => {
     <div className="home-page-wrapper content0-wrapper">
       <div className="home-page content0">
         <div className="title-wrapper">
-          <h1>{title}</h1>
+          <h1>{singularSystem.name}</h1>
         </div>
-        {scenes.map((item) => {
-          return <ProductList id={id} vId={item.code} name={item.name} />;
+        {scenes.map((item, index) => {
+          return (
+            <ProductList
+              key={`scene-${index}`}
+              id={id}
+              vId={item.code}
+              name={item.name}
+            />
+          );
         })}
       </div>
     </div>
