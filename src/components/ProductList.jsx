@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, connect, useLocation } from "umi";
+import { Link, connect, useLocation, useIntl } from "umi";
 import ProductCard from "./ProductCard";
 
 /**
@@ -20,6 +20,7 @@ const ProductList = ({
   productInfo,
   dispatch,
 }) => {
+  const { formatMessage } = useIntl();
   const { data: products } = productInfo;
   const location = useLocation();
   const { pathname } = location;
@@ -64,7 +65,9 @@ const ProductList = ({
               cursor: "pointer",
             }}
           >
-            <Link to={`/product?id=${id}&vId=${vId}`}>查看更多</Link>
+            <Link to={`/product?id=${id}&vId=${vId}`}>
+              {formatMessage({ id: "page.home.more" })}
+            </Link>
           </div>
         )}
       </div>

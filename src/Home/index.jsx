@@ -15,12 +15,7 @@ const Home = ({ productCategory, dispatch }) => {
       {categories
         .filter((item) => item.level === "1")
         .map((item, index) => {
-          return (
-            <ProductSystem
-              key={`system-${index}`}
-              id={item.code}
-            />
-          );
+          return <ProductSystem key={`system-${index}`} id={item.code} />;
         })}
     </div>
   );

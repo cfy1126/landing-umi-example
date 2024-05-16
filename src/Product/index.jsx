@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { connect, useLocation } from "umi";
+import { connect, useLocation,useIntl } from "umi";
 import { Card, Input, Radio } from "antd";
 import ProductList from "../components/ProductList";
 
 const { Search } = Input;
 
 const Product = ({ productCategory, dispatch }) => {
+  const { formatMessage } = useIntl();
   const location = useLocation();
   let { id, vId } = location.query;
   
@@ -43,7 +44,7 @@ const Product = ({ productCategory, dispatch }) => {
       }}
     >
       <div className="filter-container">
-        <strong>应用场景：</strong>
+        <strong>{formatMessage({ id: "page.product.scene" })}: </strong>
         <Radio.Group
           value={activeScene}
           onChange={(e) => {
@@ -63,7 +64,7 @@ const Product = ({ productCategory, dispatch }) => {
         <br />
         {outputTypes.length > 0 && (
           <div>
-            <strong>输出类型：</strong>
+            <strong>{formatMessage({ id: "page.product.type" })}: </strong>
             <Radio.Group
               value={activeType}
               onChange={(e) => {
@@ -77,7 +78,7 @@ const Product = ({ productCategory, dispatch }) => {
                 marginTop: 16,
               }}
             >
-              <Radio.Button value="all">全部</Radio.Button>
+              <Radio.Button value="all">{formatMessage({ id: "page.product.all" })}</Radio.Button>
               {outputTypes.map((item) => (
                 <Radio.Button key={item.code} value={item.code}>
                   {item.name}

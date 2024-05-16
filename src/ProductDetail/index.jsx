@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect, useLocation } from "umi";
+import { connect, useLocation, useIntl } from "umi";
 import {
   Card,
   Breadcrumb,
@@ -29,6 +29,7 @@ function ProductDetail({
   productAttach,
   dispatch,
 }) {
+  const { formatMessage } = useIntl();
   const location = useLocation();
   let { id, pId } = location.query;
   const { data: categories } = productCategory;
@@ -68,7 +69,7 @@ function ProductDetail({
         const filteredKeys = Object.keys(groupedData);
         filteredKeys.forEach((key) => {
           if (key === activeType) {
-            filteredObj[key] = JSON.parse(JSON.stringify(groupedData[key]));;
+            filteredObj[key] = JSON.parse(JSON.stringify(groupedData[key]));
           }
         });
       } else {
@@ -90,7 +91,7 @@ function ProductDetail({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      下载
+                      {formatMessage({ id: "page.productDetail.download" })}
                     </a>,
                   ]}
                 >
@@ -99,19 +100,35 @@ function ProductDetail({
                       title={<div>{item.attach_name}</div>}
                       description={
                         <Space>
-                          <Text strong>资料类型：</Text>
+                          <Text strong>
+                            {formatMessage({ id: "page.productDetail.type" })}：
+                          </Text>
                           <Text>{handleAttachType(item.attach_type)}</Text>
                           <Text>|</Text>
-                          <Text strong>语言：</Text>
+                          <Text strong>
+                            {formatMessage({
+                              id: "page.productDetail.language",
+                            })}
+                            ：
+                          </Text>
                           <Text>{item.attach_language}</Text>
                           <Text>|</Text>
-                          <Text strong>文件大小：</Text>
+                          <Text strong>
+                            {formatMessage({ id: "page.productDetail.size" })}：
+                          </Text>
                           <Text>{item.attach_size}</Text>
                           <Text>|</Text>
-                          <Text strong>版本：</Text>
+                          <Text strong>
+                            {formatMessage({
+                              id: "page.productDetail.version",
+                            })}
+                            ：
+                          </Text>
                           <Text>{item.attach_version}</Text>
                           <Text>|</Text>
-                          <Text strong>更新时间：</Text>
+                          <Text strong>
+                            {formatMessage({ id: "page.productDetail.time" })}：
+                          </Text>
                           <Text>{item.update_time}</Text>
                         </Space>
                       }
@@ -132,7 +149,10 @@ function ProductDetail({
     <Card
       title={
         <Breadcrumb separator=">">
-          <Breadcrumb.Item>产品资料</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            {" "}
+            {formatMessage({ id: "menu.products.information" })}
+          </Breadcrumb.Item>
           <Breadcrumb.Item href="">{singularSys.name}</Breadcrumb.Item>
           <Breadcrumb.Item href="">{singularProduct.name}</Breadcrumb.Item>
         </Breadcrumb>

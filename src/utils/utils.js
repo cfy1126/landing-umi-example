@@ -1,4 +1,5 @@
 import React from "react";
+import { getLocale } from "umi";
 import { Button } from "antd";
 
 export const isImg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?/;
@@ -17,3 +18,14 @@ export const getChildrenToRender = (item, i) => {
   }
   return React.createElement(tag, { key: i.toString(), ...item }, children);
 };
+
+export const getLaguage = (locale) => {
+  if (locale.indexOf("zh") !== -1) {
+    locale = "zh";
+  } else if (locale.indexOf("en") !== -1) {
+    locale = "en";
+  } else {
+    locale = "zh";
+  }
+  return locale;
+}

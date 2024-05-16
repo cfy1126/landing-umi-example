@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, connect } from "umi";
+import { Link, connect, setLocale, injectIntl, getLocale } from "umi";
 import TweenOne from "rc-tween-one";
 import { Menu, Select } from "antd";
 
@@ -27,7 +27,7 @@ class Header extends React.Component {
 
   render() {
     const { phoneOpen, selectKey } = this.state;
-    const { isMobile, productCategory } = this.props;
+    const { isMobile, productCategory, intl } = this.props;
     const { data: categories } = productCategory;
     const moment = phoneOpen === undefined ? 300 : null;
     return (
@@ -92,9 +92,18 @@ class Header extends React.Component {
               // }}
             >
               <Item key="home">
-                <Link to="/">首页</Link>
+                <Link to="/">
+                  {intl.formatMessage({
+                    id: "menu.home",
+                  })}
+                </Link>
               </Item>
-              <SubMenu key="sub1" title="产品资料">
+              <SubMenu
+                key="sub1"
+                title={intl.formatMessage({
+                  id: "menu.products.information",
+                })}
+              >
                 {categories
                   .filter((item) => item.level === "1")
                   .map((item, index) => {
@@ -118,9 +127,15 @@ class Header extends React.Component {
                   })}
               </SubMenu>
               <Item key="language">
-                <Select defaultValue="zh" style={{ width: 120 }}>
-                  <Option value="en">English</Option>
-                  <Option value="zh">中文</Option>
+                <Select
+                  value={getLocale()}
+                  style={{ width: 120 }}
+                  onChange={(value) => {
+                    setLocale(value, true);
+                  }}
+                >
+                  <Option value="zh-CN">简体中文</Option>
+                  <Option value="en-US">English</Option>
                 </Select>
               </Item>
             </Menu>
@@ -131,6 +146,6 @@ class Header extends React.Component {
   }
 }
 
-export default connect(({ productCategory }) => ({ productCategory }))(Header);
-
-// TODO 1. 其它页面路由时菜单选中问题(查看更多)
+export default injectIntl(
+  connect(({ productCategory }) => ({ productCategory }))(Header)
+);

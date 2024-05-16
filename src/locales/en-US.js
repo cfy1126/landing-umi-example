@@ -1,0 +1,15 @@
+export default {
+  "menu.home": "HOME",
+  "menu.products.information": "PRODUCT MATERIALS",
+  "page.home.more": "More",
+  "page.home.title": "RESOURCE CENTER",
+  "page.product.scene": "Use Cases",
+  "page.product.type": "Output Type",
+  "page.product.all": "All",
+  "page.productDetail.type": "Document Type",
+  "page.productDetail.language": "Language",
+  "page.productDetail.size": "Size",
+  "page.productDetail.version": "Version",
+  "page.productDetail.time": "Last Update",
+  "page.productDetail.download": "Download",
+};

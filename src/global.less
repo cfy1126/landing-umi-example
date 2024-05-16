@@ -1,55 +1,60 @@
-@import './Home/less/antMotionStyle.less';
-@import './layouts/nav.less';
-@import './layouts/footer.less';
+@import "./Home/less/antMotionStyle.less";
+@import "./layouts/nav.less";
+@import "./layouts/footer.less";
 
+.header3-menu {
+  min-width: 30%;
+}
 .header3-item .item-content,
 .header3-item-child .item-content,
 .header3-menu .item-content {
-    margin-left: 0 !important;
+  margin-left: 0 !important;
 }
-.sd-body.sd-body--static{
-    max-width: none !important;
-}
-
-.sd-page{
-    flex-direction: row !important;
+.sd-body.sd-body--static {
+  max-width: none !important;
 }
 
-.sd-row.sd-page__row:not(.sd-row--compact) ~ .sd-row.sd-page__row:not(.sd-row--compact){
-    margin: 0 !important;
+.sd-page {
+  flex-direction: row !important;
 }
 
-.content0-wrapper{
-    margin-top: 40px;
+.sd-row.sd-page__row:not(.sd-row--compact)
+  ~ .sd-row.sd-page__row:not(.sd-row--compact) {
+  margin: 0 !important;
 }
-.content0-wrapper .content0{
-    padding: 0 24px !important;
+
+.content0-wrapper {
+  margin-top: 40px;
+}
+.content0-wrapper .content0 {
+  padding: 0 24px !important;
 }
 
 .ant-tabs-ink-bar {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .ant-space {
-    flex-wrap: wrap !important;
+  flex-wrap: wrap !important;
 }
 
-.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled){
-    border-color: #fff !important;
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  border-color: #fff !important;
 }
 
-.ant-radio-button-wrapper{
-    border: none !important;
+.ant-radio-button-wrapper {
+  border: none !important;
 }
 
-.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active,.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):focus-within{
-    box-shadow: none !important;
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):active,
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):focus-within {
+  box-shadow: none !important;
 }
 
-.ant-radio-button-wrapper:not(:first-child)::before{
-    background-color: #fff !important;
+.ant-radio-button-wrapper:not(:first-child)::before {
+  background-color: #fff !important;
 }
 
-.ant-menu-submenu-arrow{
-    display: none !important;
+.ant-menu-submenu-arrow {
+  display: none !important;
 }
