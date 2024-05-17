@@ -167,7 +167,7 @@ function ProductDetail({
       <div className="select-group" style={{ textAlign: `right` }}>
         <Space>
           <Select
-            placeholder="请选择资料类型"
+            placeholder={formatMessage({ id: "page.productDetail.prompt.type" })}
             style={{ width: 160 }}
             onChange={(value) => setActiveType(value)}
             options={keyTypeArr.map((item) => {
@@ -182,7 +182,7 @@ function ProductDetail({
             })}
           />
           <Select
-            placeholder="请选择语言"
+            placeholder={formatMessage({ id: "page.productDetail.prompt.language" })}
             style={{ width: 120 }}
             // onChange={handleChange}
             options={[

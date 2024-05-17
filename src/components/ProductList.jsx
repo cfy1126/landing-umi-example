@@ -17,6 +17,7 @@ const ProductList = ({
   vId = "",
   tId = "",
   name = "",
+  outputTypes = [],
   productInfo,
   dispatch,
 }) => {
@@ -24,8 +25,11 @@ const ProductList = ({
   const { data: products } = productInfo;
   const location = useLocation();
   const { pathname } = location;
+  if(outputTypes && outputTypes.length === 0) {
+    tId = '';
+  }
   let currentProductList = [];
-  if (tId && tId !== "all") {
+  if (tId) {
     currentProductList = products.filter(
       (item) => item.category_scene === vId && item.category_output === tId
     );

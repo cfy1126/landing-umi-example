@@ -21,6 +21,7 @@ const ProductCard = ({ id = "", vId = "", products = [] }) => {
       {products.map((product) => {
         return (
           <Col
+            key={product.code}
             md={6}
             xs={24}
             className="content0-block"

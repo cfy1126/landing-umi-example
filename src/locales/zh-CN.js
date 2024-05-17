@@ -12,4 +12,6 @@ export default {
   "page.productDetail.version": "版本",
   "page.productDetail.time": "更新时间",
   "page.productDetail.download": "下载",
+  "page.productDetail.prompt.type": "请选择资料类型",
+  "page.productDetail.prompt.language": "请选择语言",
 };

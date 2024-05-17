@@ -12,4 +12,6 @@ export default {
   "page.productDetail.version": "Version",
   "page.productDetail.time": "Last Update",
   "page.productDetail.download": "Download",
+  "page.productDetail.prompt.type": "Please select the material type",
+  "page.productDetail.prompt.language": "Please select the language",
 };

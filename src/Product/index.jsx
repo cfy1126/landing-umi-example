@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect, useLocation,useIntl } from "umi";
+import { connect, useLocation, useIntl } from "umi";
 import { Card, Input, Radio } from "antd";
 import ProductList from "../components/ProductList";
 
@@ -9,10 +9,10 @@ const Product = ({ productCategory, dispatch }) => {
   const { formatMessage } = useIntl();
   const location = useLocation();
   let { id, vId } = location.query;
-  
+
   const [activeScene, setActiveScene] = useState(vId);
   const [activeType, setActiveType] = useState("all");
-  
+
   const { data: categories } = productCategory;
   const system = categories.find((item) => item.code === id) || {};
   const scenes = categories.filter((item) => item.parent_name === system.name);
@@ -20,6 +20,7 @@ const Product = ({ productCategory, dispatch }) => {
   const outputTypes = categories.filter(
     (item) => item.parent_name === singularScene.name
   );
+
   useEffect(() => {
     dispatch({ type: "productCategory/fetchData" });
   }, []);
@@ -68,17 +69,15 @@ const Product = ({ productCategory, dispatch }) => {
             <Radio.Group
               value={activeType}
               onChange={(e) => {
-                if (e.target.value === "all") {
-                  setActiveType("");
-                } else {
-                  setActiveType(e.target.value);
-                }
+                setActiveType(e.target.value);
               }}
               style={{
                 marginTop: 16,
               }}
             >
-              <Radio.Button value="all">{formatMessage({ id: "page.product.all" })}</Radio.Button>
+              <Radio.Button value="all">
+                {formatMessage({ id: "page.product.all" })}
+              </Radio.Button>
               {outputTypes.map((item) => (
                 <Radio.Button key={item.code} value={item.code}>
                   {item.name}
@@ -93,8 +92,9 @@ const Product = ({ productCategory, dispatch }) => {
           <ProductList
             id={id}
             vId={activeScene}
-            tId={activeType}
+            tId={activeType === "all" ? "" : activeType}
             name={singularScene.name}
+            outputTypes={outputTypes}
           />
         </div>
       </div>

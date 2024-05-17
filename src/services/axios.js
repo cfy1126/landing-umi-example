@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  // baseURL: "", // 设置你的 API 地址
+  baseURL: "https://6646ed7651e227f23ab04b86.mockapi.io", // 设置你的 API 地址
   timeout: 5000, // 设置请求超时时间
 });
 
@@ -22,7 +22,7 @@ const request = (method, url, dataOrParams = {}, config = {}) => {
 
     http(requestConfig)
       .then((response) => {
-        resolve(response.data);
+        resolve(response);
       })
       .catch((error) => {
         reject(error);
