@@ -1,12 +1,19 @@
 import React from "react";
-import { useIntl} from 'umi';
+import { useIntl } from "umi";
 import OverPack from "rc-scroll-anim/lib/ScrollOverPack";
 import QueueAnim from "rc-queue-anim";
 
 const Banner = () => {
   const { formatMessage } = useIntl();
   return (
-    <OverPack className="home-page-wrapper content13-wrapper" playScale={0.3}>
+    <OverPack
+      className="home-page-wrapper content13-wrapper"
+      playScale={0.3}
+      style={{
+        background: `url(${require("@/assets/products.png")}) no-repeat center center`,
+        backgroundSize: "cover",
+      }}
+    >
       <QueueAnim
         type="bottom"
         leaveReverse
@@ -19,7 +26,9 @@ const Banner = () => {
           alt=""
           className="title-image"
         />
-        <h1 className="title-h1">{formatMessage({ id: "page.home.title" })}</h1>
+        <h1 className="title-h1" style={{ fontSize: 42 }}>
+          {formatMessage({ id: "page.home.title" })}
+        </h1>
         <div className="title-content">
           {/* 特色展台包括 Ant Design 、AntV、AntG、Egg 等明星产品，更有产品专家 */}
         </div>

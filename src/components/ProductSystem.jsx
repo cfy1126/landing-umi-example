@@ -11,6 +11,7 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   useEffect(() => {
     dispatch({ type: "productCatetory/fetchData" });
   }, []);
+  if (scenes.length === 0) return null;
   return (
     <div className="home-page-wrapper content0-wrapper">
       <div className="home-page content0">

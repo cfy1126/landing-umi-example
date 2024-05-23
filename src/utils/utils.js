@@ -28,4 +28,10 @@ export const getLaguage = (locale) => {
     locale = "zh";
   }
   return locale;
-}
+};
+
+export const isMobileDevice = () => {
+  const userAgent = navigator.userAgent;
+  const mobileDeviceRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return mobileDeviceRegex.test(userAgent);
+};

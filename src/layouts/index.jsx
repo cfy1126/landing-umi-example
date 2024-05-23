@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { enquireScreen } from "enquire-js";
 import Header from "./Nav";
 // import Footer from "./Footer";
+// import { isMobileDevice } from "@/utils/utils";
 
 const Layout = ({ children }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   useEffect(() => {
-    const handleScreenChange = (isScreenMobile) => {
-      setIsMobile(isScreenMobile);
+    const mediaQueryList = window.matchMedia('(max-width: 767px)');
+    const listener = (event) => {
+      setIsMobile(event.matches);
     };
 
-    // 屏幕尺寸监听器
-    const screenListener = enquireScreen((b) => {
-      handleScreenChange(!!b);
-    });
+    mediaQueryList.addListener(listener);
 
     return () => {
-      screenListener.unregister();
+      mediaQueryList.removeListener(listener);
     };
   }, []);
-
   return (
     <>
       <Header isMobile={isMobile} />
@@ -33,6 +29,5 @@ const Layout = ({ children }) => {
 export default Layout;
 
 // TODO 1. 用antd做一个响应式底部导航
-// TODO 2. 国际化
 // TODO 3. 多数据测试
 // TODO 4. 加上全部场景时候得情况

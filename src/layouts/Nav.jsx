@@ -43,7 +43,7 @@ class Header extends React.Component {
           >
             <img
               width="100%"
-              src="https://gw.alipayobjects.com/zos/basement_prod/b30cdc2a-d91c-4c78-be9c-7c63b308d4b3.svg"
+              src={require('@/assets/logo.png')}
               alt="img"
             />
           </TweenOne>

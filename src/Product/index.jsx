@@ -32,13 +32,13 @@ const Product = ({ productCategory, dispatch }) => {
     <Card
       title={system.name}
       bordered={true}
-      extra={
-        <Search
-          placeholder="input search text"
-          enterButton="Search"
-          size="smaill"
-        />
-      }
+      // extra={
+      //   <Search
+      //     placeholder="input search text"
+      //     enterButton="Search"
+      //     size="smaill"
+      //   />
+      // }
       style={{
         width: `92%`,
         margin: `0 auto`,

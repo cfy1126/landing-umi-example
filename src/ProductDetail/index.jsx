@@ -9,6 +9,7 @@ import {
   List,
   Skeleton,
 } from "antd";
+import { DownloadOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
@@ -57,7 +58,8 @@ function ProductDetail({
     dispatch({ type: "systemDict/fetchData" });
   }, []);
   const handleAttachType = (id) => {
-    let data = types.find((item) => item.code === id && item.type === "2");
+    let data =
+      types.find((item) => item.code === id && item.type === "2") || {};
     return data.name || "";
   };
   const renderAttach = () => {
@@ -91,7 +93,8 @@ function ProductDetail({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {formatMessage({ id: "page.productDetail.download" })}
+                      <DownloadOutlined style={{ fontSize: 28 }} />
+                      {/* {formatMessage({ id: "page.productDetail.download" })} */}
                     </a>,
                   ]}
                 >
@@ -103,8 +106,8 @@ function ProductDetail({
                           <Text strong>
                             {formatMessage({ id: "page.productDetail.type" })}：
                           </Text>
-                          <Text>{handleAttachType(item.attach_type)}</Text>
-                          <Text>|</Text>
+                          <Text>{singularType.name}</Text>
+                          <Text> | </Text>
                           <Text strong>
                             {formatMessage({
                               id: "page.productDetail.language",
@@ -112,7 +115,7 @@ function ProductDetail({
                             ：
                           </Text>
                           <Text>{item.attach_language}</Text>
-                          <Text>|</Text>
+                          {/* <Text>|</Text>
                           <Text strong>
                             {formatMessage({ id: "page.productDetail.size" })}：
                           </Text>
@@ -129,7 +132,7 @@ function ProductDetail({
                           <Text strong>
                             {formatMessage({ id: "page.productDetail.time" })}：
                           </Text>
-                          <Text>{item.update_time}</Text>
+                          <Text>{item.update_time}</Text> */}
                         </Space>
                       }
                     />
@@ -145,71 +148,110 @@ function ProductDetail({
   };
 
   const keyTypeArr = Object.keys(groupedData) || [];
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia("(max-width: 767px)");
+    const listener = (event) => {
+      setIsMobile(event.matches);
+    };
+
+    mediaQueryList.addListener(listener);
+
+    return () => {
+      mediaQueryList.removeListener(listener);
+    };
+  }, []);
   return (
-    <Card
-      title={
-        <Breadcrumb separator=">">
-          <Breadcrumb.Item>
-            {" "}
-            {formatMessage({ id: "menu.products.information" })}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href="">{singularSys.name}</Breadcrumb.Item>
-          <Breadcrumb.Item href="">{singularProduct.name}</Breadcrumb.Item>
-        </Breadcrumb>
-      }
-      bordered={true}
-      style={{
-        width: `92%`,
-        margin: `0 auto`,
-      }}
-    >
-      <Title level={2}>{singularProduct.name}</Title>
-      <div className="select-group" style={{ textAlign: `right` }}>
-        <Space>
-          <Select
-            placeholder={formatMessage({ id: "page.productDetail.prompt.type" })}
-            style={{ width: 160 }}
-            onChange={(value) => setActiveType(value)}
-            options={keyTypeArr.map((item) => {
-              let singularType =
-                types.find(
-                  (element) => element.code === item && element.type === "1"
-                ) || {};
-              return {
-                value: item,
-                label: singularType.name,
-              };
-            })}
+    <>
+      {isMobile && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 16,
+            margin: 20,
+          }}
+        >
+          <img
+            style={{ width: 80 }}
+            src={require('@/assets/livoltek-QRcode.png')}
+            alt=""
           />
-          <Select
-            placeholder={formatMessage({ id: "page.productDetail.prompt.language" })}
-            style={{ width: 120 }}
-            // onChange={handleChange}
-            options={[
-              {
-                value: "zh",
-                label: "简体中文",
-              },
-              {
-                value: "en",
-                label: "English",
-              },
-            ]}
-          />
-        </Space>
-      </div>
-      <div
-        className="card-group"
+          {formatMessage({ id: "page.productDetail.prompt.QRcode" })}
+          <span></span>
+        </div>
+      )}
+      <Card
+        title={
+          <Breadcrumb separator=">">
+            <Breadcrumb.Item>
+              {" "}
+              {formatMessage({ id: "menu.products.information" })}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href="">{singularSys.name}</Breadcrumb.Item>
+            <Breadcrumb.Item href="">{singularProduct.name}</Breadcrumb.Item>
+          </Breadcrumb>
+        }
+        bordered={true}
         style={{
-          marginTop: 24,
-          display: "flex",
-          flexDirection: "column",
-          gap: 24,
+          width: `92%`,
+          margin: `0 auto`,
         }}
       >
-        {renderAttach()}
-      </div>
-    </Card>
+        <Title level={2}>{singularProduct.name}</Title>
+        <div className="select-group" style={{ textAlign: `right` }}>
+          <Space>
+            <Select
+              placeholder={formatMessage({
+                id: "page.productDetail.prompt.type",
+              })}
+              style={{ width: 160 }}
+              onChange={(value) => setActiveType(value)}
+              options={keyTypeArr.map((item) => {
+                let singularType =
+                  types.find(
+                    (element) => element.code === item && element.type === "1"
+                  ) || {};
+                return {
+                  value: item,
+                  label: singularType.name,
+                };
+              })}
+            />
+            {/* <Select
+              placeholder={formatMessage({
+                id: "page.productDetail.prompt.language",
+              })}
+              style={{ width: 120 }}
+              // onChange={handleChange}
+              options={[
+                {
+                  value: "zh",
+                  label: "简体中文",
+                },
+                {
+                  value: "en",
+                  label: "English",
+                },
+              ]}
+            /> */}
+          </Space>
+        </div>
+        <div
+          className="card-group"
+          style={{
+            marginTop: 24,
+            display: "flex",
+            flexDirection: "column",
+            gap: 24,
+          }}
+        >
+          {renderAttach()}
+        </div>
+      </Card>
+    </>
   );
 }
 
