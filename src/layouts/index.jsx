@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Nav";
 // import Footer from "./Footer";
-// import { isMobileDevice } from "@/utils/utils";
 
 const Layout = ({ children }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);

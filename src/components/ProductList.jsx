@@ -22,7 +22,7 @@ const ProductList = ({
   dispatch,
 }) => {
   const { formatMessage } = useIntl();
-  const { data: products } = productInfo;
+  const { data: products } = productInfo || { data: [] };
   const location = useLocation();
   const { pathname } = location;
   if(outputTypes && outputTypes.length === 0) {

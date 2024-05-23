@@ -5,9 +5,15 @@ import ProductSystem from "../components/ProductSystem";
 import "./less/antMotionStyle.less";
 
 const Home = ({ productCategory, dispatch }) => {
-  const { data: categories } = productCategory;
+  const { data: categories } = productCategory || { data: [] };
   useEffect(() => {
     dispatch({ type: "productCategory/fetchData" });
+  }, []);
+  useEffect(() => {
+    dispatch({
+      type: "menu/saveMenuSelectKey",
+      payload: "home",
+    });
   }, []);
   return (
     <div className="templates-wrapper">
@@ -21,4 +27,7 @@ const Home = ({ productCategory, dispatch }) => {
   );
 };
 
-export default connect(({ productCategory }) => ({ productCategory }))(Home);
+export default connect(({ productCategory, menu }) => ({
+  productCategory,
+  menuSelectKey: menu.menuSelectKey,
+}))(Home);

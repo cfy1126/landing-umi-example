@@ -8,6 +8,7 @@ import {
   Space,
   List,
   Skeleton,
+  Descriptions,
 } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 
@@ -32,11 +33,11 @@ function ProductDetail({
 }) {
   const { formatMessage } = useIntl();
   const location = useLocation();
-  let { id, pId } = location.query;
-  const { data: categories } = productCategory;
-  const { data: products } = productInfo;
-  const { data: attachs } = productAttach;
-  const { data: types } = systemDict;
+  let { id, vId, pId } = location.query;
+  const { data: categories } = productCategory || { data: [] };
+  const { data: products } = productInfo || { data: [] };
+  const { data: attachs } = productAttach || { data: [] };
+  const { data: types } = systemDict || { data: [] };
   // 选择文档类型
   const [activeType, setActiveType] = useState("");
 
@@ -57,6 +58,21 @@ function ProductDetail({
     dispatch({ type: "productAttach/fetchData" });
     dispatch({ type: "systemDict/fetchData" });
   }, []);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia("(max-width: 767px)");
+    const listener = (event) => {
+      setIsMobile(event.matches);
+    };
+
+    mediaQueryList.addListener(listener);
+
+    return () => {
+      mediaQueryList.removeListener(listener);
+    };
+  }, []);
+
   const handleAttachType = (id) => {
     let data =
       types.find((item) => item.code === id && item.type === "2") || {};
@@ -103,36 +119,25 @@ function ProductDetail({
                       title={<div>{item.attach_name}</div>}
                       description={
                         <Space>
-                          <Text strong>
-                            {formatMessage({ id: "page.productDetail.type" })}：
-                          </Text>
-                          <Text>{singularType.name}</Text>
-                          <Text> | </Text>
-                          <Text strong>
-                            {formatMessage({
-                              id: "page.productDetail.language",
-                            })}
-                            ：
-                          </Text>
-                          <Text>{item.attach_language}</Text>
-                          {/* <Text>|</Text>
-                          <Text strong>
-                            {formatMessage({ id: "page.productDetail.size" })}：
-                          </Text>
-                          <Text>{item.attach_size}</Text>
-                          <Text>|</Text>
-                          <Text strong>
-                            {formatMessage({
-                              id: "page.productDetail.version",
-                            })}
-                            ：
-                          </Text>
-                          <Text>{item.attach_version}</Text>
-                          <Text>|</Text>
-                          <Text strong>
-                            {formatMessage({ id: "page.productDetail.time" })}：
-                          </Text>
-                          <Text>{item.update_time}</Text> */}
+                          <Descriptions
+                            labelStyle={{ fontWeight: 550 }}
+                            layout={isMobile ? "vertical" : "horizontal"}
+                          >
+                            <Descriptions.Item
+                              label={formatMessage({
+                                id: "page.productDetail.type",
+                              })}
+                            >
+                              {singularType.name}
+                            </Descriptions.Item>
+                            <Descriptions.Item
+                              label={formatMessage({
+                                id: "page.productDetail.language",
+                              })}
+                            >
+                              {item.attach_language}
+                            </Descriptions.Item>
+                          </Descriptions>
                         </Space>
                       }
                     />
@@ -147,21 +152,13 @@ function ProductDetail({
     return arr;
   };
 
-  const keyTypeArr = Object.keys(groupedData) || [];
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   useEffect(() => {
-    const mediaQueryList = window.matchMedia("(max-width: 767px)");
-    const listener = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    mediaQueryList.addListener(listener);
-
-    return () => {
-      mediaQueryList.removeListener(listener);
-    };
+    dispatch({
+      type: "menu/saveMenuSelectKey",
+      payload: vId,
+    });
   }, []);
+  const keyTypeArr = Object.keys(groupedData) || [];
   return (
     <>
       {isMobile && (
@@ -176,7 +173,7 @@ function ProductDetail({
         >
           <img
             style={{ width: 80 }}
-            src={require('@/assets/livoltek-QRcode.png')}
+            src={require("@/assets/livoltek-QRcode.png")}
             alt=""
           />
           {formatMessage({ id: "page.productDetail.prompt.QRcode" })}
@@ -256,10 +253,11 @@ function ProductDetail({
 }
 
 export default connect(
-  ({ systemDict, productInfo, productCategory, productAttach }) => ({
+  ({ systemDict, productInfo, productCategory, productAttach, menu }) => ({
     systemDict,
     productInfo,
     productCategory,
     productAttach,
+    menuSelectKey: menu.menuSelectKey,
   })
 )(ProductDetail);

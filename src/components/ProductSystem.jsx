@@ -3,7 +3,7 @@ import { connect } from "umi";
 import ProductList from "./ProductList";
 
 const ProductSystem = ({ id = "", productCategory, dispatch }) => {
-  const { data: categories } = productCategory;
+  const { data: categories } = productCategory || { data: [] };
   const singularSystem = categories.find((item) => item.code === id);
   const scenes = categories.filter(
     (item) => item.parent_name === singularSystem.name

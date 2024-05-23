@@ -10,7 +10,6 @@ class Header extends React.Component {
     super(props);
     this.state = {
       phoneOpen: false,
-      // selectKey: "home",
     };
   }
 
@@ -26,9 +25,15 @@ class Header extends React.Component {
   }
 
   render() {
-    const { phoneOpen, selectKey } = this.state;
-    const { isMobile, productCategory, intl } = this.props;
-    const { data: categories } = productCategory;
+    const { phoneOpen } = this.state;
+    const {
+      isMobile,
+      productCategory,
+      dispatch,
+      menuSelectKey,
+      intl,
+    } = this.props;
+    const { data: categories } = productCategory || { data: [] };
     const moment = phoneOpen === undefined ? 300 : null;
     return (
       <TweenOne
@@ -41,11 +46,9 @@ class Header extends React.Component {
             animation={{ x: -30, type: "from", ease: "easeOutQuad" }}
             className="header3-logo"
           >
-            <img
-              width="100%"
-              src={require('@/assets/logo.png')}
-              alt="img"
-            />
+            <Link to="/">
+              <img width="100%" src={require("@/assets/logo.png")} alt="img" />
+            </Link>
           </TweenOne>
           {isMobile && (
             <div
@@ -82,14 +85,20 @@ class Header extends React.Component {
             <Menu
               mode={isMobile ? "inline" : "horizontal"}
               theme="light"
-              // selectedKeys={[selectKey]}
-              // onSelect={({ key }) => {
-              //   if (key === "language") {
-              //     this.setState({ selectKey: "home" });
-              //   } else {
-              //     this.setState({ selectKey: key });
-              //   }
-              // }}
+              selectedKeys={[menuSelectKey]}
+              onSelect={({ key }) => {
+                if (key === "language") {
+                  dispatch({
+                    type: "menu/saveMenuSelectKey",
+                    payload: "home",
+                  });
+                } else {
+                  dispatch({
+                    type: "menu/saveMenuSelectKey",
+                    payload: key,
+                  });
+                }
+              }}
             >
               <Item key="home">
                 <Link to="/">
@@ -111,9 +120,9 @@ class Header extends React.Component {
                       <SubMenu key={`sub1-${index}`} title={item.name}>
                         {categories
                           .filter((child) => child.parent_name === item.name)
-                          .map((element, childIndex) => {
+                          .map((element) => {
                             return (
-                              <Item key={`sub1-${index}-${childIndex}`}>
+                              <Item key={element.code}>
                                 <Link
                                   to={`/product?id=${item.code}&vId=${element.code}`}
                                 >
@@ -147,5 +156,8 @@ class Header extends React.Component {
 }
 
 export default injectIntl(
-  connect(({ productCategory }) => ({ productCategory }))(Header)
+  connect(({ productCategory, menu }) => ({
+    productCategory,
+    menuSelectKey: menu.menuSelectKey,
+  }))(Header)
 );

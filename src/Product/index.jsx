@@ -13,7 +13,7 @@ const Product = ({ productCategory, dispatch }) => {
   const [activeScene, setActiveScene] = useState(vId);
   const [activeType, setActiveType] = useState("all");
 
-  const { data: categories } = productCategory;
+  const { data: categories } = productCategory || { data: [] };
   const system = categories.find((item) => item.code === id) || {};
   const scenes = categories.filter((item) => item.parent_name === system.name);
   const singularScene = scenes.find((item) => item.code === activeScene) || {};
@@ -23,6 +23,12 @@ const Product = ({ productCategory, dispatch }) => {
 
   useEffect(() => {
     dispatch({ type: "productCategory/fetchData" });
+  }, []);
+  useEffect(() => {
+    dispatch({
+      type: "menu/saveMenuSelectKey",
+      payload: vId,
+    });
   }, []);
 
   useEffect(() => {
@@ -102,4 +108,7 @@ const Product = ({ productCategory, dispatch }) => {
   );
 };
 
-export default connect(({ productCategory }) => ({ productCategory }))(Product);
+export default connect(({ productCategory, menu }) => ({
+  productCategory,
+  menuSelectKey: menu.menuSelectKey,
+}))(Product);
