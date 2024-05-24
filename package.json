@@ -1,5 +1,5 @@
 {
-  "name": "landing-test",
+  "name": "livoltek-support",
   "private": true,
   "scripts": {
     "start": "umi dev",
@@ -9,6 +9,7 @@
     "gh-pages": "gh-pages -d dist"
   },
   "dependencies": {
+    "@ant-design/pro-layout": "^7.19.7",
     "alasql": "1.7.5",
     "axios": "^1.6.8",
     "cross-env": "^7.0.3",

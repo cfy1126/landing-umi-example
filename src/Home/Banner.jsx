@@ -10,7 +10,6 @@ const Banner = () => {
       className="home-page-wrapper content13-wrapper"
       playScale={0.3}
       style={{
-        background: `url(${require("@/assets/products.png")}) no-repeat center center`,
         backgroundSize: "cover",
       }}
     >

@@ -4,9 +4,9 @@ export default defineConfig({
   targets: {
     ie: 11,
   },
-  layout: {
-    locale: true,
-  },
+  // layout: {
+  //   locale: true,
+  // },
   locale: {
     default: "en-US",
     antd: true,
