@@ -20,11 +20,11 @@ const Banner = () => {
         delay={[0, 100]}
         className="title-wrapper"
       >
-        <img
+        {/* <img
           src="https://gw.alipayobjects.com/zos/rmsportal/PiqyziYmvbgAudYfhuBr.svg"
           alt=""
           className="title-image"
-        />
+        /> */}
         <h1 className="title-h1" style={{ fontSize: 42 }}>
           {formatMessage({ id: "page.home.title" })}
         </h1>

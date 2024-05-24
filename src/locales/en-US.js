@@ -2,7 +2,7 @@ export default {
   "menu.home": "HOME",
   "menu.products.information": "PRODUCT MATERIALS",
   "page.home.more": "More",
-  "page.home.title": "LIVOLTEK　RESOURCE CENTER",
+  "page.home.title": "LIVOLTEK　SUPPORT CENTER",
   "page.product.scene": "Use Cases",
   "page.product.type": "Output Type",
   "page.product.all": "All",

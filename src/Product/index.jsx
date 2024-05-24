@@ -15,19 +15,20 @@ const Product = ({ productCategory, dispatch }) => {
 
   const { data: categories } = productCategory || { data: [] };
   const system = categories.find((item) => item.code === id) || {};
-  const scenes = categories.filter((item) => item.parent_name === system.name);
-  const singularScene = scenes.find((item) => item.code === activeScene) || {};
-  const outputTypes = categories.filter(
-    (item) => item.parent_name === singularScene.name
+  const scenes = categories.filter(
+    (item) =>
+      item.parent_code !== null &&
+      item.parent_code.includes(system.code) &&
+      system.code === id
   );
-
+  const singularScene = scenes.find((item) => item.code === activeScene) || {};
   useEffect(() => {
     dispatch({ type: "productCategory/fetchData" });
   }, []);
   useEffect(() => {
     dispatch({
       type: "menu/saveMenuSelectKey",
-      payload: vId,
+      payload: `${id}-${vId}`,
     });
   }, []);
 
@@ -56,6 +57,10 @@ const Product = ({ productCategory, dispatch }) => {
           value={activeScene}
           onChange={(e) => {
             setActiveScene(e.target.value);
+            dispatch({
+              type: "menu/saveMenuSelectKey",
+              payload: `${id}-${e.target.value}`,
+            });
           }}
           style={{
             marginTop: 16,
@@ -69,29 +74,6 @@ const Product = ({ productCategory, dispatch }) => {
           ))}
         </Radio.Group>
         <br />
-        {outputTypes.length > 0 && (
-          <div>
-            <strong>{formatMessage({ id: "page.product.type" })}: </strong>
-            <Radio.Group
-              value={activeType}
-              onChange={(e) => {
-                setActiveType(e.target.value);
-              }}
-              style={{
-                marginTop: 16,
-              }}
-            >
-              <Radio.Button value="all">
-                {formatMessage({ id: "page.product.all" })}
-              </Radio.Button>
-              {outputTypes.map((item) => (
-                <Radio.Button key={item.code} value={item.code}>
-                  {item.name}
-                </Radio.Button>
-              ))}
-            </Radio.Group>
-          </div>
-        )}
       </div>
       <div className="home-page-wrapper content0-wrapper">
         <div className="home-page content0">
@@ -100,7 +82,6 @@ const Product = ({ productCategory, dispatch }) => {
             vId={activeScene}
             tId={activeType === "all" ? "" : activeType}
             name={singularScene.name}
-            outputTypes={outputTypes}
           />
         </div>
       </div>
@@ -110,5 +91,5 @@ const Product = ({ productCategory, dispatch }) => {
 
 export default connect(({ productCategory, menu }) => ({
   productCategory,
-  menuSelectKey: menu.menuSelectKey,
+  menuSelectKey: menu ? menu.menuSelectKey : undefined,
 }))(Product);

@@ -6,7 +6,9 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   const { data: categories } = productCategory || { data: [] };
   const singularSystem = categories.find((item) => item.code === id);
   const scenes = categories.filter(
-    (item) => item.parent_name === singularSystem.name
+    (item) =>
+      item.parent_code !== null &&
+      item.parent_code.includes(singularSystem.code)
   );
   useEffect(() => {
     dispatch({ type: "productCatetory/fetchData" });

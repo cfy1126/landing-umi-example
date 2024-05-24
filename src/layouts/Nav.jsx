@@ -119,10 +119,14 @@ class Header extends React.Component {
                     return (
                       <SubMenu key={`sub1-${index}`} title={item.name}>
                         {categories
-                          .filter((child) => child.parent_name === item.name)
+                          .filter(
+                            (child) =>
+                              child.parent_code !== null &&
+                              child.parent_code.includes(item.code)
+                          )
                           .map((element) => {
                             return (
-                              <Item key={element.code}>
+                              <Item key={`${item.code}-${element.code}`}>
                                 <Link
                                   to={`/product?id=${item.code}&vId=${element.code}`}
                                 >
@@ -135,7 +139,7 @@ class Header extends React.Component {
                     );
                   })}
               </SubMenu>
-              <Item key="language">
+              {/* <Item key="language">
                 <Select
                   value={getLocale()}
                   style={{ width: 120 }}
@@ -146,7 +150,7 @@ class Header extends React.Component {
                   <Option value="zh-CN">简体中文</Option>
                   <Option value="en-US">English</Option>
                 </Select>
-              </Item>
+              </Item> */}
             </Menu>
           </TweenOne>
         </div>
@@ -158,6 +162,6 @@ class Header extends React.Component {
 export default injectIntl(
   connect(({ productCategory, menu }) => ({
     productCategory,
-    menuSelectKey: menu.menuSelectKey,
+    menuSelectKey: menu ? menu.menuSelectKey : undefined,
   }))(Header)
 );

@@ -17,7 +17,6 @@ const ProductList = ({
   vId = "",
   tId = "",
   name = "",
-  outputTypes = [],
   productInfo,
   dispatch,
 }) => {
@@ -25,17 +24,9 @@ const ProductList = ({
   const { data: products } = productInfo || { data: [] };
   const location = useLocation();
   const { pathname } = location;
-  if(outputTypes && outputTypes.length === 0) {
-    tId = '';
-  }
-  let currentProductList = [];
-  if (tId) {
-    currentProductList = products.filter(
-      (item) => item.category_scene === vId && item.category_output === tId
-    );
-  } else {
-    currentProductList = products.filter((item) => item.category_scene === vId);
-  }
+  const currentProductList = products.filter(
+    (item) => item.category_scene === vId && item.category_system === id
+  );
   useEffect(() => {
     dispatch({ type: "productInfo/fetchData" });
   }, []);

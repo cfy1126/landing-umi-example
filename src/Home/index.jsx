@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "umi";
+import { connect, setLocale } from "umi";
 import Banner from "./Banner";
 import ProductSystem from "../components/ProductSystem";
 import "./less/antMotionStyle.less";
@@ -7,6 +7,7 @@ import "./less/antMotionStyle.less";
 const Home = ({ productCategory, dispatch }) => {
   const { data: categories } = productCategory || { data: [] };
   useEffect(() => {
+    setLocale("en-US", true);
     dispatch({ type: "productCategory/fetchData" });
   }, []);
   useEffect(() => {
@@ -29,5 +30,5 @@ const Home = ({ productCategory, dispatch }) => {
 
 export default connect(({ productCategory, menu }) => ({
   productCategory,
-  menuSelectKey: menu.menuSelectKey,
+  menuSelectKey: menu ? menu.menuSelectKey : undefined,
 }))(Home);

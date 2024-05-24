@@ -155,7 +155,7 @@ function ProductDetail({
   useEffect(() => {
     dispatch({
       type: "menu/saveMenuSelectKey",
-      payload: vId,
+      payload: `${id}-${vId}`,
     });
   }, []);
   const keyTypeArr = Object.keys(groupedData) || [];
@@ -258,6 +258,6 @@ export default connect(
     productInfo,
     productCategory,
     productAttach,
-    menuSelectKey: menu.menuSelectKey,
+    menuSelectKey: menu ? menu.menuSelectKey : undefined,
   })
 )(ProductDetail);
