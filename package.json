@@ -11,7 +11,7 @@
   "dependencies": {
     "@ant-design/pro-layout": "^7.19.7",
     "alasql": "1.7.5",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "cross-env": "^7.0.3",
     "enquire-js": "^0.2.1",
     "rc-banner-anim": "^2.1.0",
