@@ -25,7 +25,7 @@ const Banner = () => {
           alt=""
           className="title-image"
         /> */}
-        <h1 className="title-h1" style={{ fontSize: 42 }}>
+        <h1 className="title-h1" style={{ fontSize: 30 }}>
           {formatMessage({ id: "page.home.title" })}
         </h1>
         <div className="title-content">

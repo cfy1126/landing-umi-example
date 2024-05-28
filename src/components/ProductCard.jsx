@@ -1,5 +1,5 @@
 import React from "react";
-import { history } from "umi";
+import { history, useLocation } from "umi";
 import { Row, Col } from "antd";
 
 /**
@@ -16,6 +16,12 @@ const ProductCard = ({ id = "", vId = "", products = [] }) => {
   const handleClick = (code) => {
     history.push(`/productDetail?id=${id}&vId=${vId}&pId=${code}`);
   };
+  const location = useLocation();
+  // TODO 封装判断首页还是其它页面
+  const { pathname } = location;
+  if (pathname === "/" && products.length > 0) {
+    products = products.slice(0, 4);
+  }
   return (
     <Row>
       {products.map((product) => {

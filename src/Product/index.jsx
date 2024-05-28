@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect, useLocation, useIntl } from "umi";
 import { Card, Input, Radio } from "antd";
 import ProductList from "../components/ProductList";
+import styles from "./index.less";
 
 const { Search } = Input;
 
@@ -49,6 +50,7 @@ const Product = ({ productCategory, dispatch }) => {
       style={{
         width: `92%`,
         margin: `0 auto`,
+        backgroundColor: "#F9F9F9",
       }}
     >
       <div className="filter-container">

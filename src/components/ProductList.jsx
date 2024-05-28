@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, connect, useLocation, useIntl } from "umi";
 import ProductCard from "./ProductCard";
+import { Button } from "antd";
 
 /**
  *
@@ -38,19 +39,21 @@ const ProductList = ({
           display: "flex",
           justifyContent: "space-between",
           marginTop: 50,
+          paddingLeft: 20,
         }}
       >
-        <div
-          data-v-c17bef0a=""
-          className="left"
+        <Button
+          type="primary"
+          shape="round"
+          size="large"
           style={{
-            fontSize: 20,
-            paddingLeft: 15,
-            borderLeft: "4px solid #1890FF",
+            backgroundColor: "#E8E8E8",
+            border: "none",
+            color: "#000",
           }}
         >
           {name}
-        </div>
+        </Button>
         {pathname === "/" && (
           <div
             data-v-c17bef0a=""

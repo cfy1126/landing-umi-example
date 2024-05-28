@@ -11,6 +11,7 @@ import {
   Descriptions,
 } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
+import styles from "./index.less";
 
 const { Title, Text } = Typography;
 
