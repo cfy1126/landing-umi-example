@@ -38,8 +38,8 @@ const ProductList = ({
         style={{
           display: "flex",
           justifyContent: "space-between",
-          marginTop: 50,
-          paddingLeft: 20,
+          marginTop: 25,
+          paddingLeft: 8,
         }}
       >
         <Button
