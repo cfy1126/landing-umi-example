@@ -7,7 +7,7 @@ import "./less/antMotionStyle.less";
 const Home = ({ productCategory, dispatch }) => {
   const { data: categories } = productCategory || { data: [] };
   useEffect(() => {
-    setLocale("en-US", true);
+    // setLocale("en-US", true);
     dispatch({ type: "productCategory/fetchData" });
   }, []);
   useEffect(() => {

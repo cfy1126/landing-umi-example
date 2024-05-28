@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { connect, useLocation, useIntl } from "umi";
 import {
   Card,
@@ -11,6 +11,10 @@ import {
   Descriptions,
 } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
+import { getMobileOperatingSystem } from "@/utils/utils";
+import android from "@/assets/android.png";
+import ios from "@/assets/ios.png";
+import QR from "@/assets/livoltek-QRcode.png";
 import styles from "./index.less";
 
 const { Title, Text } = Typography;
@@ -160,6 +164,17 @@ function ProductDetail({
     });
   }, []);
   const keyTypeArr = Object.keys(groupedData) || [];
+
+  const ORcode = useMemo(() => {
+    let mark = getMobileOperatingSystem();
+    if (mark === "iOS") {
+      return ios;
+    } else if (mark === "Android") {
+      return android;
+    } else {
+      return QR;
+    }
+  }, []);
   return (
     <>
       {isMobile && (
@@ -172,11 +187,7 @@ function ProductDetail({
             margin: 20,
           }}
         >
-          <img
-            style={{ width: 80 }}
-            src={require("@/assets/livoltek-QRcode.png")}
-            alt=""
-          />
+          <img style={{ width: 80 }} src={ORcode} alt="" />
           {formatMessage({ id: "page.productDetail.prompt.QRcode" })}
           <span></span>
         </div>

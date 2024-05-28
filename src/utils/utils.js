@@ -35,3 +35,17 @@ export const isMobileDevice = () => {
   const mobileDeviceRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
   return mobileDeviceRegex.test(userAgent);
 };
+
+export const getMobileOperatingSystem = () => {
+  var userAgent = navigator.userAgent || navigator.vendor;
+
+  if (/android/i.test(userAgent)) {
+    return "Android";
+  }
+
+  if (/iPad|iPhone|iPod/.test(userAgent)) {
+    return "iOS";
+  }
+
+  return "Unknown";
+};

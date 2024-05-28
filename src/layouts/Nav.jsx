@@ -139,7 +139,7 @@ class Header extends React.Component {
                     );
                   })}
               </SubMenu>
-              {/* <Item key="language">
+              <Item key="language">
                 <Select
                   value={getLocale()}
                   style={{ width: 120 }}
@@ -150,7 +150,7 @@ class Header extends React.Component {
                   <Option value="zh-CN">简体中文</Option>
                   <Option value="en-US">English</Option>
                 </Select>
-              </Item> */}
+              </Item>
             </Menu>
           </TweenOne>
         </div>
