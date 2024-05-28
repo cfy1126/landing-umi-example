@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, memo } from "react";
 import { Link, connect, useLocation, useIntl } from "umi";
 import ProductCard from "./ProductCard";
 import { Button } from "antd";
@@ -25,8 +25,13 @@ const ProductList = ({
   const { data: products } = productInfo || { data: [] };
   const location = useLocation();
   const { pathname } = location;
-  const currentProductList = products.filter(
-    (item) => item.category_scene === vId && item.category_system === id
+  // TODO
+  const currentProductList = useMemo(
+    () =>
+      products.filter(
+        (item) => item.category_scene === vId && item.category_system === id
+      ),
+    [id, vId, products]
   );
   useEffect(() => {
     dispatch({ type: "productInfo/fetchData" });
@@ -74,4 +79,7 @@ const ProductList = ({
   );
 };
 
-export default connect(({ productInfo }) => ({ productInfo }))(ProductList);
+// TODO
+export default memo(
+  connect(({ productInfo }) => ({ productInfo }))(ProductList)
+);

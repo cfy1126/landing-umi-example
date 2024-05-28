@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { history, useLocation } from "umi";
 import { Row, Col } from "antd";
 
@@ -17,7 +17,6 @@ const ProductCard = ({ id = "", vId = "", products = [] }) => {
     history.push(`/productDetail?id=${id}&vId=${vId}&pId=${code}`);
   };
   const location = useLocation();
-  // TODO 封装判断首页还是其它页面
   const { pathname } = location;
   if (pathname === "/" && products.length > 0) {
     products = products.slice(0, 4);
@@ -49,5 +48,5 @@ const ProductCard = ({ id = "", vId = "", products = [] }) => {
     </Row>
   );
 };
-
-export default ProductCard;
+// TODO
+export default memo(ProductCard);

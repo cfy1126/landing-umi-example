@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { connect, useLocation, useIntl } from "umi";
 import { Card, Input, Radio } from "antd";
 import ProductList from "../components/ProductList";
@@ -12,17 +12,27 @@ const Product = ({ productCategory, dispatch }) => {
   let { id, vId } = location.query;
 
   const [activeScene, setActiveScene] = useState(vId);
-  const [activeType, setActiveType] = useState("all");
+  // const [activeType, setActiveType] = useState("all");
 
   const { data: categories } = productCategory || { data: [] };
-  const system = categories.find((item) => item.code === id) || {};
+  // TODO
+  const system =
+    useMemo(() => categories.find((item) => item.code === id), [
+      id,
+      categories,
+    ]) || {};
   const scenes = categories.filter(
     (item) =>
       item.parent_code !== null &&
       item.parent_code.includes(system.code) &&
       system.code === id
   );
-  const singularScene = scenes.find((item) => item.code === activeScene) || {};
+  // TODO
+  const singularScene =
+    useMemo(() => scenes.find((item) => item.code === activeScene), [
+      activeScene,
+      categories,
+    ]) || {};
   useEffect(() => {
     dispatch({ type: "productCategory/fetchData" });
   }, []);
@@ -82,7 +92,7 @@ const Product = ({ productCategory, dispatch }) => {
           <ProductList
             id={id}
             vId={activeScene}
-            tId={activeType === "all" ? "" : activeType}
+            // tId={activeType === "all" ? "" : activeType}
             name={singularScene.name}
           />
         </div>

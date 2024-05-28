@@ -2,6 +2,7 @@ import React from "react";
 import { Link, connect, setLocale, injectIntl, getLocale } from "umi";
 import TweenOne from "rc-tween-one";
 import { Menu, Select } from "antd";
+// 取别名用 as 代替
 
 const { Item, SubMenu } = Menu;
 
@@ -33,6 +34,7 @@ class Header extends React.Component {
       menuSelectKey,
       intl,
     } = this.props;
+    // 取别名
     const { data: categories } = productCategory || { data: [] };
     const moment = phoneOpen === undefined ? 300 : null;
     return (
