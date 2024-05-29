@@ -48,5 +48,4 @@ const ProductCard = ({ id = "", vId = "", products = [] }) => {
     </Row>
   );
 };
-// TODO
 export default memo(ProductCard);

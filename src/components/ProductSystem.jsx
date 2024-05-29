@@ -4,7 +4,6 @@ import ProductList from "./ProductList";
 
 const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   const { data: categories } = productCategory || { data: [] };
-  // TODO
   const singularSystem = useMemo(
     () => categories.find((item) => item.code === id),
     [id, categories]
@@ -22,7 +21,6 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
     <div className="home-page-wrapper content0-wrapper">
       <div className="home-page content0">
         <div className="title-wrapper">
-          {/* TODO */}
           <h1>{singularSystem && singularSystem.name}</h1>
         </div>
         {scenes.map((item, index) => {
@@ -40,7 +38,7 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   );
 };
 
-// TODO
+
 export default memo(
   connect(({ productCategory }) => ({ productCategory }))(ProductSystem)
 );

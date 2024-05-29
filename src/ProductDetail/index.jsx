@@ -12,6 +12,7 @@ import {
 } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { getMobileOperatingSystem } from "@/utils/utils";
+import useMobile from "@/hooks/useMobile";
 import android from "@/assets/android.png";
 import ios from "@/assets/ios.png";
 import QR from "@/assets/livoltek-QRcode.png";
@@ -46,7 +47,10 @@ function ProductDetail({
   // 选择文档类型
   const [activeType, setActiveType] = useState("");
 
-  const currentAttachs = attachs.filter((item) => item.product_code === pId);
+  const currentAttachs = useMemo(
+    () => attachs.filter((item) => item.product_code === pId),
+    [attachs, pId]
+  );
   const groupedData = currentAttachs.reduce((acc, curr) => {
     const category = curr.attach_category;
     if (!acc[category]) {
@@ -64,25 +68,13 @@ function ProductDetail({
     dispatch({ type: "systemDict/fetchData" });
   }, []);
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-  useEffect(() => {
-    const mediaQueryList = window.matchMedia("(max-width: 767px)");
-    const listener = (event) => {
-      setIsMobile(event.matches);
-    };
+  const isMobile = useMobile();
 
-    mediaQueryList.addListener(listener);
-
-    return () => {
-      mediaQueryList.removeListener(listener);
-    };
-  }, []);
-
-  const handleAttachType = (id) => {
-    let data =
-      types.find((item) => item.code === id && item.type === "2") || {};
-    return data.name || "";
-  };
+  // const handleAttachType = (id) => {
+  //   let data =
+  //     types.find((item) => item.code === id && item.type === "2") || {};
+  //   return data.name || "";
+  // };
   const renderAttach = () => {
     let arr = [];
     for (let i in groupedData) {
@@ -98,7 +90,7 @@ function ProductDetail({
       } else {
         filteredObj = JSON.parse(JSON.stringify(groupedData));
       }
-      if (filteredObj && filteredObj[i] && filteredObj[i].length > 0) {
+      if (filteredObj[i] && filteredObj[i].length > 0) {
         arr.push(
           <Card type="inner" title={singularType.name} key={singularType.name}>
             <List
@@ -273,3 +265,11 @@ export default connect(
     menuSelectKey: menu ? menu.menuSelectKey : undefined,
   })
 )(ProductDetail);
+
+/**
+ * 对象常用方法
+ * 1. Object.hasOwnProperty(key) 判断对象是否有某个属性
+ * 2. Object.keys(obj) 返回对象的属性数组
+ * 3. Object.values(obj) 返回对象的值数组
+ * 4. Object.entries(obj) 返回对象的键值对数组
+ */

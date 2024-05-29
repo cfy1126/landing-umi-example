@@ -25,7 +25,6 @@ const ProductList = ({
   const { data: products } = productInfo || { data: [] };
   const location = useLocation();
   const { pathname } = location;
-  // TODO
   const currentProductList = useMemo(
     () =>
       products.filter(
@@ -79,7 +78,6 @@ const ProductList = ({
   );
 };
 
-// TODO
 export default memo(
   connect(({ productInfo }) => ({ productInfo }))(ProductList)
 );

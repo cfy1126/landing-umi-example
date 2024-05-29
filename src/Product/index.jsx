@@ -15,7 +15,6 @@ const Product = ({ productCategory, dispatch }) => {
   // const [activeType, setActiveType] = useState("all");
 
   const { data: categories } = productCategory || { data: [] };
-  // TODO
   const system =
     useMemo(() => categories.find((item) => item.code === id), [
       id,
@@ -27,7 +26,6 @@ const Product = ({ productCategory, dispatch }) => {
       item.parent_code.includes(system.code) &&
       system.code === id
   );
-  // TODO
   const singularScene =
     useMemo(() => scenes.find((item) => item.code === activeScene), [
       activeScene,
