@@ -210,16 +210,22 @@ function ProductDetail({
               })}
               style={{ width: 160 }}
               onChange={(value) => setActiveType(value)}
-              options={keyTypeArr.map((item) => {
-                let singularType =
-                  types.find(
-                    (element) => element.code === item && element.type === "1"
-                  ) || {};
-                return {
-                  value: item,
-                  label: singularType.name,
-                };
-              })}
+              options={[
+                {
+                  value: "",
+                  label: "All",
+                },
+                ...keyTypeArr.map((item) => {
+                  let singularType =
+                    types.find(
+                      (element) => element.code === item && element.type === "1"
+                    ) || {};
+                  return {
+                    value: item,
+                    label: singularType.name,
+                  };
+                }),
+              ]}
             />
             {/* <Select
               placeholder={formatMessage({
