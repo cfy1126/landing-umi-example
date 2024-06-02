@@ -130,7 +130,13 @@ class Header extends React.Component {
                             return (
                               <Item key={`${item.code}-${element.code}`}>
                                 <Link
-                                  to={`/product?id=${item.code}&vId=${element.code}`}
+                                  to={{
+                                    pathname: "/product",
+                                    query: {
+                                      id: item.code,
+                                      vId: element.code,
+                                    },
+                                  }}
                                 >
                                   {element.name}
                                 </Link>

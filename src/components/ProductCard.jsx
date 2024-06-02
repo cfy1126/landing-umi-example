@@ -14,7 +14,14 @@ import { Row, Col } from "antd";
 
 const ProductCard = ({ id = "", vId = "", products = [] }) => {
   const handleClick = (code) => {
-    history.push(`/productDetail?id=${id}&vId=${vId}&pId=${code}`);
+    history.push({
+      pathname: "/productDetail",
+      query: {
+        id,
+        vId,
+        pId: code,
+      },
+    });
   };
   const location = useLocation();
   const { pathname } = location;

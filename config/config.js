@@ -1,4 +1,5 @@
 import { defineConfig } from "umi";
+import routes from "./routes";
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -17,4 +18,5 @@ export default defineConfig({
   title: "LIVOLTEK",
   favicon: "/favicon.png",
   mountElementId: 'app',
+  routes,
 });

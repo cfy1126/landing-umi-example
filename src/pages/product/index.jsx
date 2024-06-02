@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect, useLocation, useIntl } from "umi";
 import { Card, Input, Radio } from "antd";
-import ProductList from "../components/ProductList";
+import ProductList from "../../components/ProductList";
 import styles from "./index.less";
 
 const { Search } = Input;

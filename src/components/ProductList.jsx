@@ -67,7 +67,7 @@ const ProductList = ({
               cursor: "pointer",
             }}
           >
-            <Link to={`/product?id=${id}&vId=${vId}`}>
+            <Link to={{ pathname: "/product", query: { id, vId } }}>
               {formatMessage({ id: "page.home.more" })}
             </Link>
           </div>

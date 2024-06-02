@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, setLocale } from "umi";
 import Banner from "./Banner";
-import ProductSystem from "../components/ProductSystem";
+import ProductSystem from "../../components/ProductSystem";
 import "./less/antMotionStyle.less";
 
 const Home = ({ productCategory, dispatch }) => {
