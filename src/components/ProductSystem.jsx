@@ -4,14 +4,15 @@ import ProductList from "./ProductList";
 
 const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   const { data: categories } = productCategory || { data: [] };
-  const singularSystem = useMemo(
-    () => categories.find((item) => item.code === id),
-    [id, categories]
-  );
+  const singularSystem =
+    useMemo(() => categories.find((item) => item.code === id), [
+      id,
+      categories,
+    ]) || {};
   const scenes = categories.filter(
     (item) =>
       item.parent_code !== null &&
-      item.parent_code.includes(singularSystem && singularSystem.code) //TODO 设定为默认值{} 或者用 && 连接
+      item.parent_code.split(",").includes(singularSystem.code) //TODO 设定为默认值{} 或者用 && 连接
   );
   useEffect(() => {
     dispatch({ type: "productCatetory/fetchData" });
@@ -37,7 +38,6 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
     </div>
   );
 };
-
 
 export default memo(
   connect(({ productCategory }) => ({ productCategory }))(ProductSystem)
