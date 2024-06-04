@@ -39,7 +39,7 @@ function ProductDetail({
 }) {
   const { formatMessage } = useIntl();
   const location = useLocation();
-  let { id, vId, pId } = location.query;
+  let { id } = location.query;
   const { data: categories } = productCategory || { data: [] };
   const { data: products } = productInfo || { data: [] };
   const { data: attachs } = productAttach || { data: [] };
@@ -47,9 +47,14 @@ function ProductDetail({
   // 选择文档类型
   const [activeType, setActiveType] = useState("");
 
+  const singularProduct = products.find((item) => item.code === id) || {};
+  const singularSys =
+    categories.find((item) => item.code === singularProduct.category_system) ||
+    {};
+
   const currentAttachs = useMemo(
-    () => attachs.filter((item) => item.product_code.split(",").includes(pId)),
-    [attachs, pId]
+    () => attachs.filter((item) => item.product_code.split(",").includes(id)),
+    [attachs, id]
   );
   const groupedData = currentAttachs.reduce((acc, curr) => {
     const category = curr.attach_category;
@@ -59,8 +64,6 @@ function ProductDetail({
     acc[category].push(curr);
     return acc;
   }, {});
-  const singularSys = categories.find((item) => item.code === id) || {};
-  const singularProduct = products.find((item) => item.code === pId) || {};
   useEffect(() => {
     dispatch({ type: "productCategory/fetchData" });
     dispatch({ type: "productInfo/fetchData" });
@@ -152,9 +155,9 @@ function ProductDetail({
   useEffect(() => {
     dispatch({
       type: "menu/saveMenuSelectKey",
-      payload: `${id}-${vId}`,
+      payload: `${singularProduct.category_system}-${singularProduct.category_scene}`,
     });
-  }, []);
+  }, [products]);
   const keyTypeArr = Object.keys(groupedData) || [];
 
   const ORcode = useMemo(() => {

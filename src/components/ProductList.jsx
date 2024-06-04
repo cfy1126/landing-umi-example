@@ -73,7 +73,7 @@ const ProductList = ({
           </div>
         )}
       </div>
-      <ProductCard id={id} vId={vId} products={currentProductList} />
+      <ProductCard products={currentProductList} />
     </div>
   );
 };

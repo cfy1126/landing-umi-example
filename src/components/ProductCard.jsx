@@ -5,21 +5,16 @@ import { Row, Col } from "antd";
 /**
  *
  * @param {
- * id: 系统code
- * vId: 场景code
- * tId: 输出code
- * pId: 产品code
+ * id: 产品code
  * }
  */
 
-const ProductCard = ({ id = "", vId = "", products = [] }) => {
+const ProductCard = ({ products = [] }) => {
   const handleClick = (code) => {
     history.push({
       pathname: "/productDetail",
       query: {
-        id,
-        vId,
-        pId: code,
+        id: code,
       },
     });
   };
