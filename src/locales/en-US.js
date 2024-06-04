@@ -1,0 +1,18 @@
+export default {
+  "menu.home": "HOME",
+  "menu.products.information": "PRODUCT MATERIALS",
+  "page.home.more": "More",
+  "page.home.title": "LIVOLTEK　SUPPORT CENTER",
+  "page.product.scene": "Use Cases",
+  "page.product.type": "Output Type",
+  "page.product.all": "All",
+  "page.productDetail.type": "Document Type",
+  "page.productDetail.language": "Language",
+  "page.productDetail.size": "Size",
+  "page.productDetail.version": "Version",
+  "page.productDetail.time": "Last Update",
+  "page.productDetail.download": "Download",
+  "page.productDetail.prompt.type": "Please select the material type",
+  "page.productDetail.prompt.language": "Please select the language",
+  "page.productDetail.prompt.QRcode": "Please press and hold to identify the QR code and download the Livoltek App",
+};
