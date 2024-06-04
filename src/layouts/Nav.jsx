@@ -124,7 +124,7 @@ class Header extends React.Component {
                           .filter(
                             (child) =>
                               child.parent_code !== null &&
-                              child.parent_code.includes(item.code)
+                              child.parent_code.split(",").includes(item.code)
                           )
                           .map((element) => {
                             return (

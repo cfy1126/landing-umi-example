@@ -23,7 +23,7 @@ const Product = ({ productCategory, dispatch }) => {
   const scenes = categories.filter(
     (item) =>
       item.parent_code !== null &&
-      item.parent_code.includes(system.code) &&
+      item.parent_code.split(",").includes(system.code) &&
       system.code === id
   );
   const singularScene =

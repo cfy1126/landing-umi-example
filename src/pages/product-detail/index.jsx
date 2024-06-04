@@ -48,7 +48,7 @@ function ProductDetail({
   const [activeType, setActiveType] = useState("");
 
   const currentAttachs = useMemo(
-    () => attachs.filter((item) => item.product_code === pId),
+    () => attachs.filter((item) => item.product_code.split(",").includes(pId)),
     [attachs, pId]
   );
   const groupedData = currentAttachs.reduce((acc, curr) => {
