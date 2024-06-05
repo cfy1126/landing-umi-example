@@ -1,0 +1,32 @@
+{
+    "result": [
+        {
+            "code": "1",
+            "name": "Datasheet",
+            "type": "1",
+            "language": "en",
+            "id": "1"
+        },
+        {
+            "code": "2",
+            "name": "User Manual",
+            "type": "1",
+            "language": "en",
+            "id": "2"
+        },
+        {
+            "code": "3",
+            "name": "Installation Guide",
+            "type": "1",
+            "language": "en",
+            "id": "3"
+        },
+        {
+            "code": "4",
+            "name": "APP/Web Guide",
+            "type": "1",
+            "language": "en",
+            "id": "4"
+        }
+    ]
+}

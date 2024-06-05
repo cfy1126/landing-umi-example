@@ -22,7 +22,8 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
-    this.props.dispatch({ type: "productCategory/fetchData" });
+    // this.props.dispatch({ type: "productCategory/fetchData" });
+    this.props.dispatch({ type: 'productCategory/changeLanguage', payload: getLocale() });
   }
 
   render() {

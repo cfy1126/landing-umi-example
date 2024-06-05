@@ -8,7 +8,7 @@ const Home = ({ productCategory, dispatch }) => {
   const { data: categories } = productCategory || { data: [] };
   useEffect(() => {
     // setLocale("en-US", true);
-    dispatch({ type: "productCategory/fetchData" });
+    // dispatch({ type: "productCategory/fetchData" });
   }, []);
   useEffect(() => {
     dispatch({

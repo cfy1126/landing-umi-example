@@ -1,0 +1,67 @@
+{
+    "result": [
+        {
+            "code": "1",
+            "name": "RESIDENTIAL",
+            "parent_code": null,
+            "level": "1",
+            "type": "1",
+            "language": "en",
+            "id": "1"
+        },
+        {
+            "code": "2",
+            "name": "COMMERCIAL & INDUSTRY",
+            "parent_code": null,
+            "level": "1",
+            "type": "1",
+            "language": "en",
+            "id": "2"
+        },
+        {
+            "code": "4",
+            "name": "On Grid",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "en",
+            "id": "4"
+        },
+        {
+            "code": "5",
+            "name": "Off Grid",
+            "parent_code": "1",
+            "level": "2",
+            "type": "1",
+            "language": "en",
+            "id": "5"
+        },
+        {
+            "code": "6",
+            "name": "Hybrid",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "en",
+            "id": "6"
+        },
+        {
+            "code": "7",
+            "name": "EV Charger",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "en",
+            "id": "7"
+        },
+        {
+            "code": "8",
+            "name": "Battery",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "en",
+            "id": "8"
+        }
+    ]
+}
