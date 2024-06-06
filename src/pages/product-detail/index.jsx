@@ -9,8 +9,13 @@ import {
   List,
   Skeleton,
   Descriptions,
+  Divider,
+  Checkbox,
 } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
+// import _ from "lodash";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 import { getMobileOperatingSystem } from "@/utils/utils";
 import useMobile from "@/hooks/useMobile";
 import android from "@/assets/android.png";
@@ -64,12 +69,6 @@ function ProductDetail({
     acc[category].push(curr);
     return acc;
   }, {});
-  useEffect(() => {
-    dispatch({ type: "productCategory/fetchData" });
-    dispatch({ type: "productInfo/fetchData" });
-    dispatch({ type: "productAttach/fetchData" });
-    dispatch({ type: "systemDict/fetchData" });
-  }, []);
 
   const isMobile = useMobile();
 
@@ -78,6 +77,71 @@ function ProductDetail({
   //     types.find((item) => item.code === id && item.type === "2") || {};
   //   return data.name || "";
   // };
+  // 复选框选中文件
+  const [CheckedArr, setCheckedArr] = useState([]);
+  const fileIdArr = useMemo(() => currentAttachs.map((item) => item.id), [
+    attachs,
+  ]);
+  const handleChecked = (checkedValue) => {
+    if (Array.isArray(checkedValue)) {
+      setCheckedArr(checkedValue);
+    } else {
+      if (checkedValue.target.checked) {
+        setCheckedArr(fileIdArr);
+      } else {
+        setCheckedArr([]);
+      }
+    }
+  };
+
+  const handleAllDownload = () => {
+    if (CheckedArr.length === 0) {
+      return;
+    }
+
+    let downloadArr = currentAttachs.filter((item) =>
+      CheckedArr.includes(item.id)
+    );
+
+    // 去掉URL中的域名部分，只保留路径
+    const downloadUrl = downloadArr.map((item) => {
+      const url = new URL(item.attach_url);
+      let path = `/api${url.pathname}`;
+      if (process.env.NODE_ENV === "production") {
+        path = item.attach_url;
+      }
+      return { path, name: item.attach_name }; // 通过代理服务器发送请求
+    });
+
+    const zip = new JSZip();
+    const folder = zip.folder("attachments");
+
+    // 使用 Promise.all 处理所有异步操作
+    Promise.all(
+      downloadUrl.map((file, index) =>
+        fetch(file.path)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Failed to fetch ${file.path}`);
+            }
+            return response.blob();
+          })
+          .then((blob) => {
+            folder.file(`${file.name}.pdf`, blob); // 保证文件名为 PDF 格式
+          })
+      )
+    )
+      .then(() => {
+        // 所有文件都已添加到 ZIP 文件中，生成并下载 ZIP 文件
+        zip.generateAsync({ type: "blob" }).then((content) => {
+          saveAs(content, "attachments.zip");
+        });
+      })
+      .catch((error) => {
+        console.error("Error downloading files: ", error);
+      });
+  };
+
   const renderAttach = () => {
     let arr = [];
     for (let i in groupedData) {
@@ -95,7 +159,12 @@ function ProductDetail({
       }
       if (filteredObj[i] && filteredObj[i].length > 0) {
         arr.push(
-          <Card type="inner" title={singularType.name} key={singularType.name}>
+          <Card
+            type="inner"
+            title={singularType.name}
+            key={singularType.name}
+            style={{ marginBottom: 20 }}
+          >
             <List
               className="demo-loadmore-list"
               itemLayout="horizontal"
@@ -109,19 +178,23 @@ function ProductDetail({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <DownloadOutlined style={{ fontSize: 28 }} />
+                      <DownloadOutlined
+                        style={{ fontSize: 24, marginRight: 10 }}
+                      />
+                      {/* Download */}
                       {/* {formatMessage({ id: "page.productDetail.download" })} */}
                     </a>,
                   ]}
                 >
                   <Skeleton avatar title={false} loading={false} active>
+                    <Checkbox value={item.id}> </Checkbox>
                     <List.Item.Meta
                       title={<div>{item.attach_name}</div>}
                       description={
                         <Space>
                           <Descriptions
                             labelStyle={{ fontWeight: 550 }}
-                            layout={isMobile ? "vertical" : "horizontal"}
+                            layout={"horizontal"}
                           >
                             <Descriptions.Item
                               label={formatMessage({
@@ -171,7 +244,7 @@ function ProductDetail({
     }
   }, []);
   return (
-    <>
+    <div style={{ paddingBottom: 20 }}>
       {isMobile && (
         <div
           style={{
@@ -189,29 +262,33 @@ function ProductDetail({
       )}
       <Card
         title={
-          <Breadcrumb separator=">">
-            <Breadcrumb.Item>
-              {" "}
-              {formatMessage({ id: "menu.products.information" })}
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href="">{singularSys.name}</Breadcrumb.Item>
-            <Breadcrumb.Item href="">{singularProduct.name}</Breadcrumb.Item>
-          </Breadcrumb>
+          !isMobile && (
+            <Breadcrumb separator=">">
+              <Breadcrumb.Item>
+                {" "}
+                {formatMessage({ id: "menu.products.information" })}
+              </Breadcrumb.Item>
+              <Breadcrumb.Item href="">{singularSys.name}</Breadcrumb.Item>
+              <Breadcrumb.Item href="">{singularProduct.name}</Breadcrumb.Item>
+            </Breadcrumb>
+          )
         }
         bordered={true}
         style={{
-          width: `92%`,
-          margin: `0 auto`,
+          maxWidth: `1440px`,
+          margin: `20px auto`,
         }}
       >
         <Title level={2}>{singularProduct.name}</Title>
+        <Divider />
         <div className="select-group" style={{ textAlign: `right` }}>
           <Space>
             <Select
               placeholder={formatMessage({
                 id: "page.productDetail.prompt.type",
               })}
-              style={{ width: 160 }}
+              style={{ width: 160, textAlign: "left" }}
+              allowClear
               onChange={(value) => setActiveType(value)}
               options={[
                 {
@@ -258,10 +335,31 @@ function ProductDetail({
             gap: 24,
           }}
         >
-          {renderAttach()}
+          <Checkbox.Group onChange={handleChecked} value={CheckedArr}>
+            {renderAttach()}
+          </Checkbox.Group>
+          <Space size={32}>
+            <Checkbox
+              value={"all"}
+              onChange={handleChecked}
+              indeterminate={
+                CheckedArr.length > 0 && CheckedArr.length < fileIdArr.length
+              }
+              checked={CheckedArr.length === fileIdArr.length}
+            >
+              Select All
+            </Checkbox>
+            <div
+              style={{ color: "#40A9FF", cursor: "pointer" }}
+              onClick={handleAllDownload}
+            >
+              <DownloadOutlined style={{ fontSize: 24, marginRight: 10 }} />
+              <span>Download all</span>
+            </div>
+          </Space>
         </div>
       </Card>
-    </>
+    </div>
   );
 }
 

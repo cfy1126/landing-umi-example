@@ -56,8 +56,8 @@ const Product = ({ productCategory, dispatch }) => {
       //   />
       // }
       style={{
-        width: `92%`,
-        margin: `0 auto`,
+        maxWidth: `1440px`,
+        margin: `20px auto`,
         backgroundColor: "#F9F9F9",
       }}
     >

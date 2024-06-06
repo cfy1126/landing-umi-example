@@ -17,6 +17,13 @@ export default defineConfig({
   },
   title: "LIVOLTEK",
   favicon: "/favicon.png",
-  mountElementId: 'app',
+  mountElementId: "app",
   routes,
+  proxy: {
+    '/api': {
+      target: 'https://info-support.livoltek.com',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
 });
