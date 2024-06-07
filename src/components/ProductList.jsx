@@ -13,14 +13,7 @@ import { Button } from "antd";
  * }
  */
 
-const ProductList = ({
-  id = "",
-  vId = "",
-  tId = "",
-  name = "",
-  productInfo,
-  dispatch,
-}) => {
+const ProductList = ({ id = "", vId = "", name = "", productInfo }) => {
   const { formatMessage } = useIntl();
   const { data: products } = productInfo || { data: [] };
   const location = useLocation();
@@ -32,9 +25,6 @@ const ProductList = ({
       ),
     [id, vId, products]
   );
-  useEffect(() => {
-    dispatch({ type: "productInfo/fetchData" });
-  }, []);
   return (
     <div className="scenes">
       <div
@@ -46,7 +36,7 @@ const ProductList = ({
           paddingLeft: 8,
         }}
       >
-        <Button
+        {/* <Button
           type="primary"
           shape="round"
           size="large"
@@ -57,7 +47,19 @@ const ProductList = ({
           }}
         >
           {name}
-        </Button>
+        </Button> */}
+        <h1
+          style={{
+            fontSize: 18,
+            paddingLeft: 10,
+            borderLeft: "3px solid #008BF7",
+            fontWeight: 500,
+            height: "100%",
+            color: "#000",
+          }}
+        >
+          {name}
+        </h1>
         {pathname === "/" && (
           <div
             data-v-c17bef0a=""

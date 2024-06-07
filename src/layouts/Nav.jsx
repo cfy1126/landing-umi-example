@@ -23,7 +23,10 @@ class Header extends React.Component {
 
   componentDidMount() {
     // this.props.dispatch({ type: "productCategory/fetchData" });
-    this.props.dispatch({ type: 'productCategory/changeLanguage', payload: getLocale() });
+    this.props.dispatch({
+      type: "productCategory/changeLanguage",
+      payload: getLocale(),
+    });
   }
 
   render() {
@@ -120,7 +123,14 @@ class Header extends React.Component {
                   .filter((item) => item.level === "1")
                   .map((item, index) => {
                     return (
-                      <SubMenu key={`sub1-${index}`} title={item.name}>
+                      <SubMenu
+                        key={item.name}
+                        title={
+                          <Link to={`/product?id=${item.code}`}>
+                            {item.name}
+                          </Link>
+                        }
+                      >
                         {categories
                           .filter(
                             (child) =>

@@ -1,12 +1,7 @@
 import { getLocale } from "umi";
 import { fetchProductCategories } from "../services/api";
-import { getLaguage } from "../utils/utils";
+import { getLaguage,handleLanguage } from "../utils/utils";
 import data from "/data/product_category.json";
-
-function handleLanguage(data) {
-  const locale = getLaguage(getLocale());
-  return data.filter((item) => item.language === locale);
-}
 
 export default {
   namespace: "productCategory",

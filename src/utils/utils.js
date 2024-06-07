@@ -49,3 +49,8 @@ export const getMobileOperatingSystem = () => {
 
   return "Unknown";
 };
+
+export const handleLanguage = (data) => {
+  const locale = getLaguage(getLocale());
+  return data.filter((item) => item.language === locale);
+};

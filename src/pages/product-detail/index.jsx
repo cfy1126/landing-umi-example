@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { connect, useLocation, useIntl } from "umi";
+import { connect, useLocation, useIntl, Link } from "umi";
 import {
   Card,
   Breadcrumb,
@@ -11,8 +11,9 @@ import {
   Descriptions,
   Divider,
   Checkbox,
+  message,
 } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DownloadOutlined, HomeOutlined } from "@ant-design/icons";
 // import _ from "lodash";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
@@ -56,6 +57,9 @@ function ProductDetail({
   const singularSys =
     categories.find((item) => item.code === singularProduct.category_system) ||
     {};
+  const singularScene =
+    categories.find((item) => item.code === singularProduct.category_scene) ||
+    {};
 
   const currentAttachs = useMemo(
     () => attachs.filter((item) => item.product_code.split(",").includes(id)),
@@ -96,6 +100,7 @@ function ProductDetail({
 
   const handleAllDownload = () => {
     if (CheckedArr.length === 0) {
+      message.error("Please select the material to be downloaded.");
       return;
     }
 
@@ -116,6 +121,7 @@ function ProductDetail({
     const zip = new JSZip();
     const folder = zip.folder("attachments");
 
+    message.loading('Starting download, please wait...', 0);
     // 使用 Promise.all 处理所有异步操作
     Promise.all(
       downloadUrl.map((file, index) =>
@@ -135,10 +141,14 @@ function ProductDetail({
         // 所有文件都已添加到 ZIP 文件中，生成并下载 ZIP 文件
         zip.generateAsync({ type: "blob" }).then((content) => {
           saveAs(content, "attachments.zip");
+          message.destroy();
+          message.success('Download completed');
         });
       })
       .catch((error) => {
         console.error("Error downloading files: ", error);
+        message.destroy();
+        message.error('Download failed');
       });
   };
 
@@ -264,12 +274,28 @@ function ProductDetail({
         title={
           !isMobile && (
             <Breadcrumb separator=">">
+              <Link to="/">
+                <HomeOutlined
+                  style={{
+                    fontSize: 24,
+                    marginRight: 10,
+                    cursor: "pointer",
+                    color: "#40A9FF",
+                  }}
+                />
+              </Link>
               <Breadcrumb.Item>
                 {" "}
                 {formatMessage({ id: "menu.products.information" })}
               </Breadcrumb.Item>
-              <Breadcrumb.Item href="">{singularSys.name}</Breadcrumb.Item>
-              <Breadcrumb.Item href="">{singularProduct.name}</Breadcrumb.Item>
+              <Breadcrumb.Item href="">
+                <Link
+                  to={`/product?id=${singularSys.code}&vId=${singularScene.code}`}
+                >
+                  {singularSys.name}
+                </Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>{singularProduct.name}</Breadcrumb.Item>
             </Breadcrumb>
           )
         }
