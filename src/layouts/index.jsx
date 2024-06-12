@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Affix } from "antd";
 import Header from "./Nav";
 import useMobile from "@/hooks/useMobile";
 // import Footer from "./Footer";
@@ -7,7 +8,9 @@ const Layout = ({ children }) => {
   const isMobile = useMobile();
   return (
     <>
-      <Header isMobile={isMobile} />
+      <Affix offsetTop={0}>
+        <Header isMobile={isMobile} />
+      </Affix>
       {children}
       {/* <Footer isMobile={isMobile} /> */}
     </>

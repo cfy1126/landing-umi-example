@@ -14,5 +14,8 @@ export default {
   "page.productDetail.download": "Download",
   "page.productDetail.prompt.type": "Please select the material type",
   "page.productDetail.prompt.language": "Please select the language",
-  "page.productDetail.prompt.QRcode": "Please press and hold to identify the QR code and download the Livoltek App",
+  "page.productDetail.prompt.QRcode":
+    "Please press and hold to identify the QR code and download the Livoltek App",
+  "page.productDetail.select.all": "Select All",
+  "page.productDetail.download.all": "Download all",
 };

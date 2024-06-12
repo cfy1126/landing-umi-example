@@ -15,4 +15,6 @@ export default {
   "page.productDetail.prompt.type": "请选择资料类型",
   "page.productDetail.prompt.language": "请选择语言",
   "page.productDetail.prompt.QRcode": "请长按识别二维码，下载利沃得App",
+  "page.productDetail.select.all": "全选",
+  "page.productDetail.download.all": "批量下载",
 };

@@ -121,7 +121,7 @@ function ProductDetail({
     const zip = new JSZip();
     const folder = zip.folder("attachments");
 
-    message.loading('Starting download, please wait...', 0);
+    message.loading("Starting download, please wait...", 0);
     // 使用 Promise.all 处理所有异步操作
     Promise.all(
       downloadUrl.map((file, index) =>
@@ -142,13 +142,13 @@ function ProductDetail({
         zip.generateAsync({ type: "blob" }).then((content) => {
           saveAs(content, "attachments.zip");
           message.destroy();
-          message.success('Download completed');
+          message.success("Download completed");
         });
       })
       .catch((error) => {
         console.error("Error downloading files: ", error);
         message.destroy();
-        message.error('Download failed');
+        message.error("Download failed");
       });
   };
 
@@ -373,14 +373,16 @@ function ProductDetail({
               }
               checked={CheckedArr.length === fileIdArr.length}
             >
-              Select All
+              {formatMessage({ id: "page.productDetail.select.all" })}
             </Checkbox>
             <div
               style={{ color: "#40A9FF", cursor: "pointer" }}
               onClick={handleAllDownload}
             >
               <DownloadOutlined style={{ fontSize: 24, marginRight: 10 }} />
-              <span>Download all</span>
+              <span>
+                {formatMessage({ id: "page.productDetail.download.all" })}
+              </span>
             </div>
           </Space>
         </div>
