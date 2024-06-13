@@ -17,7 +17,7 @@ const Home = ({ productCategory, dispatch }) => {
     });
   }, []);
   return (
-    <div className="templates-wrapper" style={{backgroundColor: '#f1f3f5'}}>
+    <div className="templates-wrapper" style={{ backgroundColor: "#f1f3f5" }}>
       <Banner />
       {categories
         .filter((item) => item.level === "1")

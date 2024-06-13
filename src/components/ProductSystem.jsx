@@ -19,10 +19,10 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   }, []);
   if (scenes.length === 0) return null;
   return (
-    <div className="home-page-wrapper content0-wrapper">
+    <div className="home-page-wrapper content0-wrapper" id={singularSystem.name}>
       <div className="home-page content0">
         <div className="title-wrapper">
-          <h1>{singularSystem && singularSystem.name}</h1>
+          <h1>{singularSystem.name}</h1>
         </div>
         {scenes.map((item, index) => {
           return (

@@ -30,6 +30,19 @@ const Banner = () => {
         </h1>
         <div className="title-content">
           {/* 特色展台包括 Ant Design 、AntV、AntG、Egg 等明星产品，更有产品专家 */}
+          <a href="#RESIDENTIAL">
+            <img
+              src={require("../../assets/residentisl.png")}
+              alt=""
+              style={{ marginRight: "11.25vw" }}
+            />
+          </a>
+          <a href="#COMMERCIAL & INDUSTRY">
+            <img
+              src={require("../../assets/commercial & industry.png")}
+              alt=""
+            />
+          </a>
         </div>
       </QueueAnim>
     </OverPack>

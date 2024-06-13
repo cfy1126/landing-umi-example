@@ -192,7 +192,7 @@
         },
         {
             "code": "20",
-            "name": "BHF-G20/25/30/35/40/45/50/55/60",
+            "name": "BHF-G20/25/30/35/40/45/50/55/60/65/70/75",
             "product_url": "https://info-support.livoltek.com/3-Promotional-Material/1-All Pictures_Compressed/5-Battery/5-BHF-G20~60/F.png",
             "category_system": "2",
             "category_scene": "8",
@@ -209,16 +209,6 @@
             "category_output": null,
             "link_code": null,
             "id": "21"
-        },
-        {
-            "code": "22",
-            "name": "BHF-S10/S15/S20/S25/S30",
-            "product_url": "https://info-support.livoltek.com/3-Promotional-Material/1-All Pictures_Compressed/5-Battery/2-BHF-S10~30/F.png",
-            "category_system": "2",
-            "category_scene": "8",
-            "category_output": null,
-            "link_code": null,
-            "id": "22"
         },
         {
             "code": "23",

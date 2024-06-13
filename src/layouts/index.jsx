@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Affix } from "antd";
+import { Affix, BackTop } from "antd";
 import Header from "./Nav";
 import useMobile from "@/hooks/useMobile";
 // import Footer from "./Footer";
@@ -13,6 +13,7 @@ const Layout = ({ children }) => {
       </Affix>
       {children}
       {/* <Footer isMobile={isMobile} /> */}
+      <BackTop type="primary" />
     </>
   );
 };
