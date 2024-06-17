@@ -12,17 +12,19 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   const scenes = categories.filter(
     (item) =>
       item.parent_code !== null &&
-      item.parent_code.split(",").includes(singularSystem.code) //TODO 设定为默认值{} 或者用 && 连接
+      item.parent_code.split(",").includes(singularSystem.code)
   );
   useEffect(() => {
     dispatch({ type: "productCatetory/fetchData" });
   }, []);
   if (scenes.length === 0) return null;
   return (
-    <div className="home-page-wrapper content0-wrapper" id={singularSystem.name}>
+    <div className="home-page-wrapper content0-wrapper">
       <div className="home-page content0">
         <div className="title-wrapper">
-          <h1>{singularSystem.name}</h1>
+          <h1 id={singularSystem.name} style={{ paddingTop: 80 }}>
+            {singularSystem.name}
+          </h1>
         </div>
         {scenes.map((item, index) => {
           return (

@@ -6,7 +6,9 @@ export default defineConfig({
     type: "none",
   },
   fastRefresh: {},
-  dynamicImport: {},
+  dynamicImport: {
+    loading: '@/components/loading',
+  },
   targets: {
     ie: 11,
   },

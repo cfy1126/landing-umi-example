@@ -20,5 +20,4 @@ const Layout = ({ children }) => {
 
 export default Layout;
 
-// TODO 1. 用antd做一个响应式底部导航
-// TODO 4. 加上全部场景时候得情况
+
