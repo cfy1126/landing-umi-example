@@ -20,9 +20,9 @@ const ProductSystem = ({ id = "", productCategory, dispatch }) => {
   if (scenes.length === 0) return null;
   return (
     <div className="home-page-wrapper content0-wrapper">
-      <div className="home-page content0">
+      <div className="home-page content0 home-content">
         <div className="title-wrapper">
-          <h1 id={singularSystem.name} style={{ paddingTop: 80 }}>
+          <h1 id={singularSystem.name} className="products-system-title">
             {singularSystem.name}
           </h1>
         </div>

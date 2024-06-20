@@ -24,6 +24,7 @@
     "rc-tween-one": "^2.2.14",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-intersection-observer": "^9.10.3",
     "react-sublime-video": "^0.2.5",
     "survey-core": "^1.10.3",
     "survey-react-ui": "^1.10.3"

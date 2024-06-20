@@ -36,10 +36,10 @@ const ProductCard = ({ products = [] }) => {
           >
             <div className="content0-block-item jzjgrrupf2c-editor_css">
               <img
-                src={product.product_url}
-                alt=""
+                  src={product.product_url}
+                  alt=""
                 className="content0-block-icon jzjncn210ql-editor_css"
-              />
+                />
               <h1 className="content0-block-title jzj8xt5kgv7-editor_css">
                 {product.name}
               </h1>

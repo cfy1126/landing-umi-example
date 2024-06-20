@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
-import { connect, setLocale } from "umi";
+import React, { useState, useEffect } from "react";
+import { connect } from "umi";
+import { Typography } from "antd";
+import useMobile from "@/hooks/useMobile";
 import Banner from "./Banner";
 import ProductSystem from "../../components/ProductSystem";
 import "./less/antMotionStyle.less";
 
+const { Text, Link } = Typography;
+
 const Home = ({ productCategory, dispatch }) => {
+  const isMobile = useMobile();
+  const [selected, setSelected] = useState("RESIDENTIAL");
   const { data: categories } = productCategory || { data: [] };
-  useEffect(() => {
-    // setLocale("en-US", true);
-    // dispatch({ type: "productCategory/fetchData" });
-  }, []);
+  const handleClick = (section) => {
+    setSelected(section);
+  };
+  const getLinkStyle = (section) => ({
+    textDecoration: selected === section ? "underline" : "none",
+    color: selected === section ? "#1890ff" : "black",
+    cursor: "pointer",
+  });
   useEffect(() => {
     dispatch({
       type: "menu/saveMenuSelectKey",
@@ -19,6 +29,27 @@ const Home = ({ productCategory, dispatch }) => {
   return (
     <div className="templates-wrapper" style={{ backgroundColor: "#f1f3f5" }}>
       <Banner />
+      {isMobile && (
+        <div style={{ textAlign: "center", marginTop: 24 }}>
+          <Typography>
+            <a
+              href="#RESIDENTIAL"
+              style={getLinkStyle("RESIDENTIAL")}
+              onClick={() => handleClick("RESIDENTIAL")}
+            >
+              <span>RESIDENTIAL</span>
+            </a>
+            <br />
+            <a
+              href="#COMMERCIAL & INDUSTRY"
+              style={getLinkStyle("COMMERCIAL")}
+              onClick={() => handleClick("COMMERCIAL")}
+            >
+              <span>COMMERCIAL & INDUSTRY</span>
+            </a>
+          </Typography>
+        </div>
+      )}
       {categories
         .filter((item) => item.level === "1")
         .map((item, index) => {
