@@ -283,7 +283,7 @@
         {
             "code": "30",
             "name": "MF_60_120kW",
-            "product_url": "https://info-support.livoltek.com/3-Promotional-Material/1-All Pictures_Compressed/6-EV Charger/4-IEC-MF-DC-Charging-Station/F.png",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/6-EV Charger\/4-IEC-MF-DC-Charging-Station\/F.png\r\n",
             "category_system": "2",
             "category_scene": "7",
             "category_output": null,
@@ -299,6 +299,86 @@
             "category_output": null,
             "link_code": null,
             "id": "31"
+        },
+        {
+            "code": "32",
+            "name": "HP3-5K\/6K\/8K\/10K\/12K-D2",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/2-Hybrid Inverter\/3-HP3-15~30-D2\/F.png",
+            "category_system": "2",
+            "category_scene": "6",
+            "category_output": null,
+            "link_code": null,
+            "id": "32"
+        },
+        {
+            "code": "33",
+            "name": "HP3-15K\/20K\/25K\/30K-D2",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/Upcoming Release.jpg",
+            "category_system": "2",
+            "category_scene": "6",
+            "category_output": null,
+            "link_code": null,
+            "id": "33"
+        },
+        {
+            "code": "34",
+            "name": "iPower HES-3000\/3680\/4600\/5000\/6000",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/4-All-In-One\/1-HES-3~6kW\/Front.png",
+            "category_system": "1",
+            "category_scene": "6",
+            "category_output": null,
+            "link_code": null,
+            "id": "34"
+        },
+        {
+            "code": "35",
+            "name": "iPower AES: AES- 3K\/3.68K\/4.6K\/5K",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/4-All-In-One\/2-AES-3~5kW\/F.png",
+            "category_system": "1",
+            "category_scene": "6",
+            "category_output": null,
+            "link_code": null,
+            "id": "35"
+        },
+        {
+            "code": "36",
+            "name": "GT3-75\/100\/110\/125K-1",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/Upcoming Release.jpg",
+            "category_system": "2",
+            "category_scene": "4",
+            "category_output": null,
+            "link_code": null,
+            "id": "36"
+        },
+        {
+            "code": "37",
+            "name": "BHF-X225",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/5-Battery\/6-BHF-X225\/F.png",
+            "category_system": "2",
+            "category_scene": "8",
+            "category_output": null,
+            "link_code": null,
+            "id": "37"
+        },
+        {
+            "code": "38",
+            "name": "BLF-B5150",
+            "product_url": "https://info-support.livoltek.com/3-Promotional-Material/1-All%20Pictures_Compressed/5-Battery/8-BLF-B5150/F.png",
+            "category_system": "1",
+            "category_scene": "8",
+            "category_output": null,
+            "link_code": null,
+            "id": "38"
+        },
+        {
+            "code": "39",
+            "name": "BLF-12100\/12200\/12280\/24100",
+            "product_url": "https:\/\/info-support.livoltek.com\/3-Promotional-Material\/1-All Pictures_Compressed\/5-Battery\/7-BLF-12100-12200-12280-24100\/F.png",
+            "category_system": "1",
+            "category_scene": "8",
+            "category_output": null,
+            "link_code": null,
+            "id": "39"
         }
     ]
 }

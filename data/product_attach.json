@@ -1104,6 +1104,71 @@
             "update_time": null,
             "language": "en",
             "id": "85"
+        },
+        {
+            "attach_name": "Datasheet_iPower-HES-3~6kW",
+            "product_code": "34",
+            "attach_url": "https:\/\/info-support.livoltek.com\/2-Product-Info\/1-Product Catalogue & Leaflet\/English\/Product Leaflets\/1-iPower HES-3~6kW.pdf",
+            "attach_category": "1",
+            "attach_type": null,
+            "attach_size": null,
+            "attach_version": null,
+            "attach_language": "English",
+            "update_time": null,
+            "language": "en",
+            "id": "86"
+        },
+        {
+            "attach_name": "User Manual_HES-3~6kW",
+            "product_code": "34",
+            "attach_url": "https:\/\/info-support.livoltek.com\/2-Product-Info\/2-Product User Guide\/2. Hybrid Inverter\/1-Hybrid_All-in-one_ESS\/English\/1-User Manual_All-in-one&Hyper_3-6kW_V2405.pdf",
+            "attach_category": "2",
+            "attach_type": null,
+            "attach_size": null,
+            "attach_version": null,
+            "attach_language": "English",
+            "update_time": null,
+            "language": "en",
+            "id": "87"
+        },
+        {
+            "attach_name": "Quick Installation Guide_HES-3~6kW",
+            "product_code": "34",
+            "attach_url": "https:\/\/info-support.livoltek.com\/2-Product-Info\/2-Product User Guide\/2. Hybrid Inverter\/1-Hybrid_All-in-one_ESS\/English\/2-Quick-Installation-Guide_All-In-One.pdf",
+            "attach_category": "3",
+            "attach_type": null,
+            "attach_size": null,
+            "attach_version": null,
+            "attach_language": "English",
+            "update_time": null,
+            "language": "en",
+            "id": "88"
+        },
+        {
+            "attach_name": "APP Guide for End-user_HES-3~6kW",
+            "product_code": "34",
+            "attach_url": "https:\/\/info-support.livoltek.com\/2-Product-Info\/2-Product User Guide\/2. Hybrid Inverter\/1-Hybrid_All-in-one_ESS\/English\/3-Monitoring System APP Guide for End User【All-in-one+Hybrid Single Phase】.pdf",
+            "attach_category": "4",
+            "attach_type": null,
+            "attach_size": null,
+            "attach_version": null,
+            "attach_language": "English",
+            "update_time": null,
+            "language": "en",
+            "id": "89"
+        },
+        {
+            "attach_name": "APP Guide for Installer_HES-3~6kW",
+            "product_code": "34",
+            "attach_url": "https:\/\/info-support.livoltek.com\/2-Product-Info\/2-Product User Guide\/2. Hybrid Inverter\/1-Hybrid_All-in-one_ESS\/English\/4-Monitoring System APP Guide for Installer【All-in-one+Hybrid Single Phase】.pdf",
+            "attach_category": "4",
+            "attach_type": null,
+            "attach_size": null,
+            "attach_version": null,
+            "attach_language": "English",
+            "update_time": null,
+            "language": "en",
+            "id": "90"
         }
     ]
 }
