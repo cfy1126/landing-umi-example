@@ -3,7 +3,7 @@ import { connect, useLocation, useIntl, Link } from "umi";
 import { Card, Input, Radio, Divider } from "antd";
 import ProductList from "../../components/ProductList";
 import { HomeOutlined } from "@ant-design/icons";
-import styles from "./index.less";
+import "./index.less";
 
 const { Search } = Input;
 
