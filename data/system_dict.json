@@ -23,10 +23,38 @@
         },
         {
             "code": "4",
-            "name": "APP/Web Guide",
+            "name": "APP\/Web Guide",
             "type": "1",
             "language": "en",
             "id": "4"
+        },
+        {
+            "code": "1",
+            "name": "数据表",
+            "type": "1",
+            "language": "zh",
+            "id": "5"
+        },
+        {
+            "code": "2",
+            "name": "用户手册",
+            "type": "1",
+            "language": "zh",
+            "id": "6"
+        },
+        {
+            "code": "3",
+            "name": "安装指南",
+            "type": "1",
+            "language": "zh",
+            "id": "7"
+        },
+        {
+            "code": "4",
+            "name": "应用程序\/网页指南",
+            "type": "1",
+            "language": "zh",
+            "id": "8"
         }
     ]
 }

@@ -56,7 +56,7 @@ class Header extends React.Component {
               <img width="100%" src={require("@/assets/logo.png")} alt="img" />
             </Link>
           </TweenOne>
-          {/* {isMobile && (
+          {isMobile && (
             <div
               className="header3-mobile-menu"
               onClick={() => {
@@ -67,7 +67,7 @@ class Header extends React.Component {
               <em />
               <em />
             </div>
-          )} */}
+          )}
           <TweenOne
             className="header3-menu"
             animation={
@@ -158,7 +158,7 @@ class Header extends React.Component {
                     );
                   })}
               </SubMenu>
-              {/* <Item key="language">
+              <Item key="language">
                 <Select
                   value={getLocale()}
                   style={{ width: 120 }}
@@ -169,7 +169,7 @@ class Header extends React.Component {
                   <Option value="zh-CN">简体中文</Option>
                   <Option value="en-US">English</Option>
                 </Select>
-              </Item> */}
+              </Item>
             </Menu>
           </TweenOne>
         </div>

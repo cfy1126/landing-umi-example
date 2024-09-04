@@ -20,7 +20,7 @@
         },
         {
             "code": "4",
-            "name": "On Grid",
+            "name": "Grid-Tied",
             "parent_code": "1,2",
             "level": "2",
             "type": "1",
@@ -62,6 +62,96 @@
             "type": "1",
             "language": "en",
             "id": "8"
+        },
+        {
+            "code": "1",
+            "name": "户用",
+            "parent_code": null,
+            "level": "1",
+            "type": "1",
+            "language": "zh",
+            "id": "11"
+        },
+        {
+            "code": "2",
+            "name": "工商业",
+            "parent_code": null,
+            "level": "1",
+            "type": "1",
+            "language": "zh",
+            "id": "12"
+        },
+        {
+            "code": "3",
+            "name": "配件",
+            "parent_code": null,
+            "level": "1",
+            "type": "1",
+            "language": "zh",
+            "id": "13"
+        },
+        {
+            "code": "4",
+            "name": "并网",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "zh",
+            "id": "14"
+        },
+        {
+            "code": "5",
+            "name": "离网",
+            "parent_code": "1",
+            "level": "2",
+            "type": "1",
+            "language": "zh",
+            "id": "15"
+        },
+        {
+            "code": "6",
+            "name": "混合",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "zh",
+            "id": "16"
+        },
+        {
+            "code": "7",
+            "name": "充电桩",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "zh",
+            "id": "17"
+        },
+        {
+            "code": "8",
+            "name": "电池",
+            "parent_code": "1,2",
+            "level": "2",
+            "type": "1",
+            "language": "zh",
+            "id": "18"
+        },
+        {
+            "code": "9",
+            "name": "智能能源管理平台",
+            "parent_code": "3",
+            "level": "2",
+            "type": "1",
+            "language": "zh",
+            "id": "19"
+        },
+        {
+            "code": "10",
+            "name": "通信采集设备",
+            "parent_code": "3",
+            "level": "2",
+            "type": "1",
+            "language": "zh",
+            "id": "20"
         }
     ]
 }

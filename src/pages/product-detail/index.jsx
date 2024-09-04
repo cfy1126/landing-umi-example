@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { connect, useLocation, useIntl, Link } from "umi";
+import { connect, useLocation, useIntl, Link, getLocale } from "umi";
 import {
   Card,
   Breadcrumb,
@@ -50,6 +50,13 @@ function ProductDetail({
   const { data: products } = productInfo || { data: [] };
   const { data: attachs } = productAttach || { data: [] };
   const { data: types } = systemDict || { data: [] };
+
+  useEffect(() => {
+    dispatch({
+      type: "systemDict/changeLanguage",
+    });
+  }, [types]);
+
   // 选择文档类型
   const [activeType, setActiveType] = useState("");
 
