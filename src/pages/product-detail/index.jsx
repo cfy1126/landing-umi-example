@@ -22,6 +22,7 @@ import useMobile from "@/hooks/useMobile";
 import android from "@/assets/android.png";
 import ios from "@/assets/ios.png";
 import QR from "@/assets/livoltek-QRcode.png";
+import install from "@/assets/install-btn.png";
 import styles from "./index.less";
 
 const { Title, Text } = Typography;
@@ -51,11 +52,11 @@ function ProductDetail({
   const { data: attachs } = productAttach || { data: [] };
   const { data: types } = systemDict || { data: [] };
 
-  useEffect(() => {
-    dispatch({
-      type: "systemDict/changeLanguage",
-    });
-  }, [types]);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: "systemDict/changeLanguage",
+  //   });
+  // }, [types]);
 
   // 选择文档类型
   const [activeType, setActiveType] = useState("");
@@ -371,6 +372,14 @@ function ProductDetail({
           <Checkbox.Group onChange={handleChecked} value={CheckedArr}>
             {renderAttach()}
           </Checkbox.Group>
+          {singularProduct.youtube_link && (
+            <a
+              href={singularProduct.youtube_link}
+              style={{ textAlign: "center" }}
+            >
+              <img width={200} src={install} />
+            </a>
+          )}
           <Space size={32}>
             <Checkbox
               value={"all"}
