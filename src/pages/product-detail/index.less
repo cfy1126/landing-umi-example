@@ -1,3 +1,11 @@
+
+.container{
+  display: flex;
+  align-items: flex-start;
+  font-size: 18px;
+  column-gap: 6px;
+}
+
 :global {
   .ant-breadcrumb {
     font-size: 16px !important;
@@ -10,6 +18,35 @@
   }
   .ant-descriptions-item-container {
     align-items: baseline !important;
+  }
+  .ant-popconfirm{
+    left: 10px !important;
+    top: 228px !important;
+    z-index: 1 !important;
+  }
+  .ant-input-group-wrapper{
+    margin: 24px 0;
+    display: flex;
+    justify-content: center;
+  }
+  .ant-input-group{
+    width: 70%;
+  }
+  .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab{
+    padding: 0;
+  }
+  .ant-tabs-nav{
+    width: 30%;
+  }
+  .ant-tabs-tab-btn{
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: left;
+  }
+  .ant-tabs-content-holder{
+    max-height: 386px;
+    overflow-y: auto;
   }
   @media screen and (max-width: 768px) {
     .ant-breadcrumb {

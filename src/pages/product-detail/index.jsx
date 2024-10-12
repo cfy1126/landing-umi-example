@@ -12,8 +12,13 @@ import {
   Divider,
   Checkbox,
   message,
+  Popconfirm,
 } from "antd";
-import { DownloadOutlined, HomeOutlined } from "@ant-design/icons";
+import {
+  DownloadOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
+import ProductSearch from "@/components/ProductSearch/ProductSearch";
 // import _ from "lodash";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
@@ -261,6 +266,8 @@ function ProductDetail({
       return QR;
     }
   }, []);
+
+  const [open, setOpen] = useState(true);
   return (
     <div style={{ paddingBottom: 20 }}>
       {isMobile && (
@@ -313,7 +320,22 @@ function ProductDetail({
           margin: `20px auto`,
         }}
       >
-        <Title level={2}>{singularProduct.name}</Title>
+        <div className={styles.container}>
+          <ProductSearch />
+          {/* <MenuOutlined></MenuOutlined> */}
+          <Title level={2}>{singularProduct.name}</Title>
+        </div>
+        <Popconfirm
+          title="Click to select other models."
+          placement="bottomLeft"
+          showCancel={false}
+          icon={null}
+          onConfirm={(e) => {
+            setOpen(false);
+          }}
+          open={open}
+        ></Popconfirm>
+
         <Divider />
         <div className="select-group" style={{ textAlign: `right` }}>
           <Space>
