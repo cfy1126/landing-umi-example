@@ -57,13 +57,6 @@ function ProductDetail({
   const { data: attachs } = productAttach || { data: [] };
   const { data: types } = systemDict || { data: [] };
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "systemDict/changeLanguage",
-  //   });
-  // }, [types]);
-
-  // 选择文档类型
   const [activeType, setActiveType] = useState("");
 
   const singularProduct = products.find((item) => item.code === id) || {};
@@ -89,11 +82,6 @@ function ProductDetail({
 
   const isMobile = useMobile();
 
-  // const handleAttachType = (id) => {
-  //   let data =
-  //     types.find((item) => item.code === id && item.type === "2") || {};
-  //   return data.name || "";
-  // };
   // 复选框选中文件
   const [CheckedArr, setCheckedArr] = useState([]);
   const fileIdArr = useMemo(() => currentAttachs.map((item) => item.id), [
@@ -204,8 +192,6 @@ function ProductDetail({
                       <DownloadOutlined
                         style={{ fontSize: 24, marginRight: 10 }}
                       />
-                      {/* Download */}
-                      {/* {formatMessage({ id: "page.productDetail.download" })} */}
                     </a>,
                   ]}
                 >
@@ -321,20 +307,23 @@ function ProductDetail({
         }}
       >
         <div className={styles.container}>
-          <ProductSearch />
-          {/* <MenuOutlined></MenuOutlined> */}
+          <Popconfirm
+            title="Click to select other models."
+            placement="bottomRight"
+            showCancel={false}
+            icon={null}
+            onOpenChange={(e) => {
+              setOpen(false);
+            }}
+            onConfirm={(e) => {
+              setOpen(false);
+            }}
+            open={open}
+          >
+            <ProductSearch />
+          </Popconfirm>
           <Title level={2}>{singularProduct.name}</Title>
         </div>
-        <Popconfirm
-          title="Click to select other models."
-          placement="bottomLeft"
-          showCancel={false}
-          icon={null}
-          onConfirm={(e) => {
-            setOpen(false);
-          }}
-          open={open}
-        ></Popconfirm>
 
         <Divider />
         <div className="select-group" style={{ textAlign: `right` }}>
@@ -363,23 +352,6 @@ function ProductDetail({
                 }),
               ]}
             />
-            {/* <Select
-              placeholder={formatMessage({
-                id: "page.productDetail.prompt.language",
-              })}
-              style={{ width: 120 }}
-              // onChange={handleChange}
-              options={[
-                {
-                  value: "zh",
-                  label: "简体中文",
-                },
-                {
-                  value: "en",
-                  label: "English",
-                },
-              ]}
-            /> */}
           </Space>
         </div>
         <div
