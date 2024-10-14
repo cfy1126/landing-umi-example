@@ -10,36 +10,46 @@ function ProductSearch({ productCategory, productInfo }) {
   const { data: categories } = productCategory || { data: [] };
   const { data: products } = productInfo || { data: [] };
 
+  const [searchCategories, setSearchCategories] = useState(categories);
+  const [searchProducts, setSearchProducts] = useState(products);
+
   const CategoryContent = ({ item }) => {
     return (
       <>
         <h3>{item.name}</h3>
-        {categories
+        {searchCategories
           .filter(
             (_item) =>
               _item.parent_code !== null &&
               _item.parent_code.split(",").includes(item.code)
           )
           .map((element) => {
+            const filteredProducts = searchProducts.filter(
+              (product) =>
+                product.category_system === item.code &&
+                product.category_scene === element.code
+            );
+
             return (
               <React.Fragment key={element.id}>
-                <div className={styles.second_title}>{element.name}</div>
+                <div
+                  className={styles.second_title}
+                  style={{
+                    display: filteredProducts.length ? "block" : "none",
+                  }}
+                >
+                  {element.name}
+                </div>
                 <ul className={styles.product_list}>
-                  {products
-                    .filter(
-                      (product) =>
-                        product.category_system === item.code &&
-                        product.category_scene === element.code
-                    )
-                    .map((product) => {
-                      return (
-                        <li key={product.id}>
-                          <a href={`/productDetail?id=${product.code}`}>
-                            {product.name}
-                          </a>
-                        </li>
-                      );
-                    })}
+                  {filteredProducts.map((product) => {
+                    return (
+                      <li key={product.id}>
+                        <a href={`/productDetail?id=${product.code}`}>
+                          {product.name}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </React.Fragment>
             );
@@ -48,7 +58,7 @@ function ProductSearch({ productCategory, productInfo }) {
     );
   };
 
-  const TabsItems = categories
+  const TabsItems = searchCategories
     .filter((item) => item.level === "1")
     .map((item) => {
       return (
@@ -58,6 +68,23 @@ function ProductSearch({ productCategory, productInfo }) {
       );
     });
 
+  const onSearch = (value) => {
+    if (!value) {
+      setSearchProducts(products);
+      setSearchCategories(categories);
+      return;
+    }
+    const input = value.toLowerCase().trim();
+    const matches = products.filter((product) =>
+      product.name.toLowerCase().includes(input)
+    );
+    if (matches.length === 0) {
+      setSearchCategories([]);
+    }else{
+      setSearchCategories(categories);
+    }
+    setSearchProducts(matches);
+  };
   return (
     <>
       <MenuOutlined onClick={() => setIsModalOpen(true)} />
@@ -66,9 +93,13 @@ function ProductSearch({ productCategory, productInfo }) {
         style={{
           top: 80,
         }}
+        destroyOnClose={true}
         open={isModalOpen}
         onOk={() => setIsModalOpen(false)}
-        onCancel={() => setIsModalOpen(false)}
+        onCancel={() => {
+          setIsModalOpen(false);
+          setSearchProducts(products);
+        }}
         footer={null}
         bodyStyle={{
           height: "540px",
@@ -78,10 +109,15 @@ function ProductSearch({ productCategory, productInfo }) {
           padding: 16,
         }}
       >
-        <Search placeholder="input search text" enterButton />
+        <Search
+          placeholder="input search text"
+          enterButton
+          allowClear
+          onSearch={onSearch}
+        />
         <Tabs tabPosition="left" style={{ flexGrow: 1 }}>
           <Tabs.TabPane tab="ALL" key="all">
-            {categories
+            {searchCategories
               .filter((object) => object.level === "1")
               .map((item) => {
                 return <CategoryContent key={item.id} item={item} />;
@@ -94,9 +130,7 @@ function ProductSearch({ productCategory, productInfo }) {
   );
 }
 
-export default connect(
-  ({ productInfo, productCategory }) => ({
-    productInfo,
-    productCategory,
-  })
-)(ProductSearch);
+export default connect(({ productInfo, productCategory }) => ({
+  productInfo,
+  productCategory,
+}))(ProductSearch);
