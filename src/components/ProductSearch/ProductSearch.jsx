@@ -110,7 +110,7 @@ function ProductSearch({ productCategory, productInfo }) {
         }}
       >
         <Search
-          placeholder="input search text"
+          placeholder="Please enter model / keyword."
           enterButton
           allowClear
           onSearch={onSearch}

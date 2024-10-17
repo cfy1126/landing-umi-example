@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { history, useLocation } from "umi";
 import { Row, Col } from "antd";
+import "./ProductCard.less";
 
 /**
  *
@@ -34,15 +35,15 @@ const ProductCard = ({ products = [] }) => {
             className="content0-block"
             onClick={() => handleClick(product.code)}
           >
-            <div className="content0-block-item jzjgrrupf2c-editor_css">
+            <div className="product-container">
               <img
                   src={product.product_url}
                   alt=""
-                className="content0-block-icon jzjncn210ql-editor_css"
+                className=""
                 />
-              <h1 className="content0-block-title jzj8xt5kgv7-editor_css">
+              <h3 className="">
                 {product.name}
-              </h1>
+              </h3>
             </div>
           </Col>
         );

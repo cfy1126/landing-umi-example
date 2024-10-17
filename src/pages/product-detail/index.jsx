@@ -302,7 +302,7 @@ function ProductDetail({
         }
         bordered={true}
         style={{
-          maxWidth: `1440px`,
+          maxWidth: `1280px`,
           margin: `20px auto`,
         }}
       >
