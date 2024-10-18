@@ -198,7 +198,16 @@ function ProductDetail({
                   <Skeleton avatar title={false} loading={false} active>
                     <Checkbox value={item.id}> </Checkbox>
                     <List.Item.Meta
-                      title={<div>{item.attach_name}</div>}
+                      title={
+                        <Link
+                          to={{
+                            pathname: "/pdf",
+                            state: { url: item.attach_url },
+                          }}
+                        >
+                          {item.attach_name}
+                        </Link>
+                      }
                       description={
                         <Space>
                           <Descriptions

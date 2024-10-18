@@ -30,6 +30,7 @@
     "survey-react-ui": "^1.10.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.8",
     "@umijs/preset-react": "^2.1.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.0.0",

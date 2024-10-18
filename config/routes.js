@@ -16,6 +16,10 @@ export default [
         component: "@/pages/home",
       },
       {
+        path: "/pdf",
+        component: "@/pages/pdf",
+      },
+      {
         component: "@/pages/404",
       },
     ],
