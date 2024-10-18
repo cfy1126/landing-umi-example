@@ -8,40 +8,40 @@ const PdfViewer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const objectElement = document.querySelector('object');
-    if (objectElement) {
-      objectElement.addEventListener('load', () => setLoading(false));
+    const iframe = document.getElementById("pdf-iframe");
+    const handleLoad = () => setLoading(false);
+
+    if (iframe) {
+      iframe.addEventListener("load", handleLoad);
     }
+
+    return () => {
+      if (iframe) {
+        iframe.removeEventListener("load", handleLoad);
+      }
+    };
   }, [url]);
 
   return (
-    <div
-      style={{
-        border: "1px solid rgba(0, 0, 0, 0.3)",
-        height: "750px",
-        position: "relative",
-      }}
-    >
+    <>
       {loading && (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <Spin />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <Spin size="large" />
         </div>
       )}
-      <object
-        data={url}
-        type="application/pdf"
-        width="100%"
-        height="100%"
-        onLoad={() => setLoading(false)}
-      ></object>
-    </div>
+      <iframe
+        id="pdf-iframe"
+        src={url}
+        style={{
+          position: "fixed",
+          top: 100,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          border: "none",
+        }}
+      />
+    </>
   );
 };
 
